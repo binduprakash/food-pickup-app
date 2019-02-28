@@ -14,6 +14,14 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
+const cookieSession = require('cookie-session');
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['1', '2'],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 
@@ -52,12 +60,15 @@ app.post('/orders', (req, res) => {
   } else { */
     res.redirect('/order');
   //}
-  //set orderID and cookie
+  //set cookie
 });
 
 // Order Confirmation
 app.get("/order", (req, res) => {
-  //const orderID = req.params.orderID
+  let orderID = 5000;
+  req.session.orderID = orderID;
+  console.log("----------", req.session.orderID)
+  //need to clear cookie when? req.session = null
   res.render("order_review");
 });
 
