@@ -1,51 +1,55 @@
 "use strict";
 
-require('dotenv').config();
+require("dotenv").config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const express = require("express");
+const bodyParser = require("body-parser");
+const sass = require("node-sass-middleware");
+const app = express();
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require("morgan");
+const knexLogger = require("knex-logger");
 
-const cookieSession = require('cookie-session');
+const cookieSession = require("cookie-session");
 
-app.use(cookieSession({
-  name: 'session',
-  keys: ['1', '2'],
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}));
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["1", "2"],
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  })
+);
 
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
+const itemRoutes = require("./routes/menu_items");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/styles", sass({
-  src: __dirname + "/styles",
-  dest: __dirname + "/public/styles",
-  debug: true,
-  outputStyle: 'expanded'
-}));
+app.use(
+  "/styles",
+  sass({
+    src: __dirname + "/styles",
+    dest: __dirname + "/public/styles",
+    debug: true,
+    outputStyle: "expanded"
+  })
+);
 app.use(express.static("public"));
 
-// Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
-
+// Menu Items API
+app.use("/api/menu_items", itemRoutes(knex));
 
 /* ------------User Routes------------*/
 // Home page
@@ -53,12 +57,12 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post('/orders', (req, res) => {
+app.post("/orders", (req, res) => {
   /*if ( cart is empty) {
     res.status(403);
     res.send('Cart is Empty');
   } else { */
-    res.redirect('/order');
+  res.redirect("/order");
   //}
   //set cookie
 });
@@ -67,14 +71,14 @@ app.post('/orders', (req, res) => {
 app.get("/order", (req, res) => {
   let orderID = 5000;
   req.session.orderID = orderID;
-  console.log("----------", req.session.orderID)
+  console.log("----------", req.session.orderID);
   //need to clear cookie when? req.session = null
   res.render("order_review");
 });
 
 app.post("/order", (req, res) => {
   //const orderID = req.params.orderID
-  res.send('User confirms and places order on this html page');
+  res.send("User confirms and places order on this html page");
 });
 
 // Order Complete - Thank You
@@ -88,21 +92,14 @@ app.get("/admin/orders", (req, res) => {
   res.render("admin_orders");
 });
 
-
 //Admin Order ID Page
-app.get('/admin/orders/:orderID', (req, res) => {
-  
+app.get("/admin/orders/:orderID", (req, res) => {
   res.render("admin_order_edit");
 });
 
-
-app.post('/admin/orders/:orderID/edit', (req, res) => {
-  
+app.post("/admin/orders/:orderID/edit", (req, res) => {
   res.render("admin_order_edit");
 });
-
-
-
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
