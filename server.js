@@ -38,10 +38,60 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
+
+/* ------------User Routes------------*/
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+app.post('/orders', (req, res) => {
+  /*if ( cart is empty) {
+    res.status(403);
+    res.send('Cart is Empty');
+  } else { */
+    res.redirect('/order');
+  //}
+  //set orderID and cookie
+});
+
+// Order Confirmation
+app.get("/order", (req, res) => {
+  //const orderID = req.params.orderID
+  res.render("order_review");
+});
+
+app.post("/order", (req, res) => {
+  //const orderID = req.params.orderID
+  res.send('User confirms and places order on this html page');
+});
+
+// Order Complete - Thank You
+app.get("/order/complete", (req, res) => {
+  res.render("order_confirmation");
+});
+
+/* ------------Admin Routes------------*/
+// Admin Orders Page
+app.get("/admin/orders", (req, res) => {
+  res.render("admin_orders");
+});
+
+
+//Admin Order ID Page
+app.get('/admin/orders/:orderID', (req, res) => {
+  
+  res.render("admin_order_edit");
+});
+
+
+app.post('/admin/orders/:orderID/edit', (req, res) => {
+  
+  res.render("admin_order_edit");
+});
+
+
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
