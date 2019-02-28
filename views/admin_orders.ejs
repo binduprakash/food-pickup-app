@@ -6,11 +6,42 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/admin.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   </head>
-
   <body>
-    <h1>List of all orders for admin</h1>
+      <div class="admin_order_container">
+        <div class="admin_page_header">
+          <h1>List of all orders for admin</h1>
+        </div>
+        <div class="order_status">
+          <div class="order_status_header">
+            <span class="header_span">New Orders</span>
+          </div>
+          <ol class="order_type">
+            <li><a href="/admin/orders">Order ID</a></li>
+            <li><a href="/admin/orders">Order ID</a></li>
+          </ol>
+        </div>
+        <div class="order_status">
+          <div class="order_status_header">
+            <span class="header_span">Orders in Progress</span>
+          </div>
+          <ol class="order_type">
+            <li><a href="/admin/orders">Order ID</a></li>
+            <li><a href="/admin/orders">Order ID</a></li>
+          </ol>
+        </div>
+        <div class="order_status">
+          <div class="order_status_header">
+            <span class="header_span">Orders Completed</span>
+          </div>
+          <ol class="order_type">
+            <li><a href="/admin/orders">Order ID</a></li>
+            <li><a href="/admin/orders">Order ID</a></li>
+          </ol>
+        </div>
+      </div>
   </body>
 </html>
