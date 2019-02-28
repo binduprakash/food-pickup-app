@@ -99,6 +99,14 @@ body {
     }
   }
   .thankyou {
-    background-color: white;
+    width: 50%;
+    background-color: #bf5f33;
+    position: absolute;
+    left: 25%;
+    text-align: center;
+    border-style: solid;
+    border-width: 5px;
+    border-color: goldenrod;
+    border-radius: 8px;
   }
 }
