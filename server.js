@@ -1,5 +1,5 @@
 "use strict";
-//test
+
 require('dotenv').config();
 
 const PORT        = process.env.PORT || 8080;
@@ -16,6 +16,7 @@ const knexLogger  = require('knex-logger');
 
 const cookieSession = require('cookie-session');
 
+
 app.use(cookieSession({
   name: 'session',
   keys: ['1', '2'],
@@ -23,7 +24,9 @@ app.use(cookieSession({
 }));
 
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
+const usersRoutes     = require("./routes/users");
+const adminRoutes     = require("./routes/admin");
+const customerRoutes  = require("./routes/customer");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -45,62 +48,8 @@ app.use(express.static("public"));
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
-
-
-/* ------------User Routes------------*/
-// Home page
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.post('/orders', (req, res) => {
-  /*if ( cart is empty) {
-    res.status(403);
-    res.send('Cart is Empty');
-  } else { */
-    res.redirect('/order');
-  //}
-  //set cookie
-});
-
-// Order Confirmation
-app.get("/order", (req, res) => {
-  let orderID = 5000;
-  req.session.orderID = orderID;
-  console.log("----------", req.session.orderID)
-  //need to clear cookie when? req.session = null
-  res.render("order_review");
-});
-
-app.post("/order", (req, res) => {
-  //const orderID = req.params.orderID
-  res.send('User confirms and places order on this html page');
-});
-
-// Order Complete - Thank You
-app.get("/order/complete", (req, res) => {
-  res.render("order_confirmation");
-});
-
-/* ------------Admin Routes------------*/
-// Admin Orders Page
-app.get("/admin/orders", (req, res) => {
-  res.render("admin_orders");
-});
-
-
-//Admin Order ID Page
-app.get('/admin/orders/:orderID', (req, res) => {
-  
-  res.render("admin_order_edit");
-});
-
-
-app.post('/admin/orders/:orderID/edit', (req, res) => {
-  
-  res.render("admin_order_edit");
-});
-
+app.use("/admin", adminRoutes());
+app.use("/", customerRoutes());
 
 
 
