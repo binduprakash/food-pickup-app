@@ -12,4 +12,14 @@ body {
     font-family: cursive;
     text-align: center;
   }
+
+  .container {
+    display: flex;
+    align-items: center;
+    .menuType {
+      background-color: white;
+      width: 200px;
+      height: max-content;
+    }
+  }
 }
