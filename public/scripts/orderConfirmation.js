@@ -33,25 +33,26 @@ $('document').ready(function(e){
 
     }
 
+    function subtotalCost (itemRow) {
+        let itemCost = itemRow.quantity * itemRow.price;
+        return itemCost
+    }
+
+
+    let subtotal = 0;
+
     function mockData(cartData){
-        
-        
         for (let i = 0; i < cartData.length; i++) {
             console.log(cartData.length)
+            
             var $cartRow = createMenuElement(cartData[i]);
             $('#cart-container').append($cartRow);
+            
+            subtotal += subtotalCost(cartData[i])
+            console.log("--&&&&----",subtotal)
         }
         
-        /*
-        
-        cartData.forEach(function(element) {
-            
-            console.log(element.item);
-            console.log(element.quantity);
-            console.log(element.price)  
-        });
-        */
-        
+    console.log(subtotal)
     
     }
     
