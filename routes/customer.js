@@ -3,6 +3,7 @@
 const express     = require("express");
 const customerRoutes   = express.Router();
 const bodyParser  = require("body-parser");
+//const twilio = require('./public/scripts/twilio')
 
 module.exports = function() {
 
@@ -33,6 +34,14 @@ module.exports = function() {
     customerRoutes.post("/order", (req, res) => {
         //const orderID = req.params.orderID
         console.log("---------------",req.body)
+        /*
+        let time = "30 minutes";
+        let phoneNumber = "+17789274265"
+
+        let stringMessage = `Your order will be ready in ${time}`
+        
+        twilio.twilioTextMessage(stringMessage, phoneNumber)
+        */
         res.redirect("/order/complete");
     });
     
