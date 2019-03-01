@@ -6,11 +6,57 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/OrderConfirmation.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   </head>
 
   <body>
-    <h1>Confirm Order</h1>
+    <h1>Order Confirmation</h1>
+    <h2>Cart Details</h2>
+    
+    <div class="cart-row">
+      <span class="cart-item cart-header cart-column">ITEM</span>
+      <span class="cart-price cart-header cart-column">PRICE</span>
+      <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+  </div>
+  <div class="cart-items">
+      <div class="cart-row">
+          <div class="cart-item cart-column">
+              <span class="cart-item-title">Pakora</span>
+          </div>
+          <span class="cart-price cart-column">$19.99</span>
+          <div class="cart-quantity cart-column">
+              <input class="cart-quantity-input" type="number" value="1">
+              <button class="btn btn-danger" type="button">REMOVE</button>
+          </div>
+      </div>
+  </div>
+  
+  <h3>Order Contact Information</h3>
+    <form class="form-inline" action="/complete" method="POST">
+      <div class="form-group mb-2">
+        <label for="email">First Name:</label>
+          <input class="form-control" type="text" name="firstName" style="width: 150px; margin: 1em">
+        <label for="email">Last Name:</label>
+          <input class="form-control" type="text" name="lastName" style="width: 150px; margin: 1em">
+          
+          <br>
+        <label for="phoneNumber">Phone Number:</label>
+        <input class="form-control" type="text" name="phoneNumber" style="width: 150px; margin: 1em">
+      </div>
+    </form>
+
+
+
+
+  <div>
+    <p>
+    </p>
+  </div>
+  <button class="btn orderConfirm" type="button">Confirm Order</button>
+
+</section> 
+
   </body>
 </html>
