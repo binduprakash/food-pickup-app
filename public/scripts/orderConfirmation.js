@@ -8,7 +8,7 @@ $('document').ready(function(e){
             price: 600
         }, 
         {
-            item: "Naan",
+            item: "Naan Bread",
             quantity: 3,
             price: 300
         }
@@ -24,11 +24,11 @@ $('document').ready(function(e){
             <div class="cart-items">
                 <div class="cart-row">
                     <div class="cart-item cart-column">
-                        <span class="cart-item-title">Pakora</span>
+                        <span class="cart-item-title">Parkora</span>
                     </div>
                     <span class="cart-price cart-column">$19.99</span>
                     <div class="cart-quantity cart-column">
-                        <input class="cart-quantity-input" type="number" value="1">
+                        <input class="cart-quantity-input" type="number" value="5">
                         <button class="btn btn-danger" type="button">REMOVE</button>
                     </div>
                 </div>
@@ -41,14 +41,16 @@ $('document').ready(function(e){
         
         let $cart = createMenuElement();
         
+        
         $('#cart-container').prepend($cart);
-        /*
+        
         cartData.forEach(function(element) {
+            
             console.log(element.item);
             console.log(element.quantity);
             console.log(element.price)  
         });
-        */
+        
     
     }
     mockData(cart);
