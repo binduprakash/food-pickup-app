@@ -1,10 +1,9 @@
 //secrets file containing token and phone numbers
 
-const twilio = function(stringMsg, phone) {
-
+twilioTextMessage = function(stringMsg, phone) {
+    
     console.log(stringMsg, phone)
 
-    
     const secrets = require('./secrets');
 
     var accountSid = secrets.twilioAccountSid; // Your Account SID from www.twilio.com/console
@@ -27,4 +26,4 @@ let phoneNumber = "+17789274265"
 
 let stringMessage = `Your order will be ready in ${time}`
 
-twilio(stringMessage, phoneNumber)
+twilioTextMessage(stringMessage, phoneNumber)
