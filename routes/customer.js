@@ -2,6 +2,7 @@
 
 const express     = require("express");
 const customerRoutes   = express.Router();
+const bodyParser  = require("body-parser");
 
 module.exports = function() {
 
@@ -24,14 +25,15 @@ module.exports = function() {
     customerRoutes.get("/order", (req, res) => {
         let orderID = 5000;
         req.session.orderID = orderID;
-        console.log("----------", req.session.orderID)
+        console.log("---********-", req.session.orderID)
         //need to clear cookie when? req.session = null
         res.render("order_review");
     });
     
     customerRoutes.post("/order", (req, res) => {
         //const orderID = req.params.orderID
-        res.send('User confirms and places order on this html page');
+        console.log("---------------",req.body)
+        res.redirect("/order/complete");
     });
     
     // Order Complete - Thank You

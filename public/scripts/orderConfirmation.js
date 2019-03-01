@@ -14,7 +14,7 @@ $('document').ready(function(e){
         }
     ]
 
-    function createMenuElement () {
+    function createMenuElement (itemRow) {
         return (    
                 `<div class="cart-row">
                 <span class="cart-item cart-header cart-column">ITEM</span>
@@ -37,11 +37,11 @@ $('document').ready(function(e){
 
     }
 
-
-
     function mockData(cartData){
         
-        createMenuElement()
+        let $cart = createMenuElement();
+        
+        $('#cart-container').prepend($cart);
         /*
         cartData.forEach(function(element) {
             console.log(element.item);
@@ -53,29 +53,4 @@ $('document').ready(function(e){
     }
     mockData(cart);
 
-}
-
-
-/*
-$(() => {
-    $.ajax({
-        method: "GET",
-        url: "/api/menu_items"
-    }).done(menu_items => {
-        console.log(menu_items);
-        let $article = $("<article>").addClass("menuList");
-        let $appRow = $("<tr>").addClass("appRow");
-        menu_items.forEach(function(menuItem) {
-        if (menuItem.menu_type_id === 1) {
-            let $item = $("<td>")
-            .addClass("itemName")
-            .text(menuItem.name);
-            $appRow.append($item);
-        }
-        $article.append($appRow);
-    });
-    $(".menu_container").append($article);
-    });
 });
-
-*/
