@@ -28,6 +28,10 @@ body {
     .menu_container {
       max-height: 350px;
       overflow-y: auto;
+      border-radius: 20px;
+      border-style: solid;
+      border-width: 5px;
+      border-color: goldenrod;
     }
     .menuTitle {
       width: 90%;
@@ -72,7 +76,7 @@ body {
       float: right;
     }
   }
-  .buttonHolder {
+  .bottomLine {
     text-align: center;
     .submit {
       padding-top: 15px;

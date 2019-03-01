@@ -169,5 +169,27 @@ $(() => {
       $article.append($bevHead);
     });
     $(".menu_container").append($article);
+
+    const qty = $(".qtyForm");
+    // save subtotal to a var, then send THAT final var to the subtotal.text ****************
+    qty.on("input", function(event) {
+      let $qtyform = $(this);
+      let previousItem = $qtyform.prev();
+
+      let price = previousItem.text();
+
+      let temp = $qtyform.val();
+      price = price.substring(1);
+      var finalQty = parseFloat(temp);
+      var finalPrice = parseFloat(price);
+
+      let $subtotal = $("#subtotal");
+      // console.log(subtotal);
+
+      $subtotal.text(finalQty * finalPrice);
+      // console.log(finalQty * finalPrice);
+      //let form = $qtyform.parent();
+      //console.log(form);
+    });
   });
 });
