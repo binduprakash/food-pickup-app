@@ -24,10 +24,10 @@ $('document').ready(function(e){
                     <div class="cart-item cart-column">
                         <span class="cart-item-title">${itemRow.item}</span>
                     </div>
-                    <span class="cart-price cart-column">${itemRow.price}</span>
+                    <span class="cart-price cart-column">${displayDollars(itemRow.price)}</span>
                     <div class="cart-quantity cart-column">
-                        <input class="cart-quantity-input" type="number" value="${itemRow.quantity}">
-                        <button class="btn btn-remove-data" data-ID =${itemRow.itemID} type="button">REMOVE</button>
+                        <input class="cart-quantity-input" data-id = ${itemRow.itemID} type="number" value="${itemRow.quantity}">
+                        <button class="btn btn-remove-data" data-id =${itemRow.itemID} type="button">REMOVE</button>
                     </div>
                 </div>
             </div>`
@@ -52,13 +52,26 @@ $('document').ready(function(e){
             subtotal += subtotalCost(cartData[i])
         }
         
-    console.log(subtotal)
+    console.log(displayDollars(subtotal));
     }
     
     mockData(cart);
 
 
 
+
+    var plant = document.getElementById('data-ID1');
+
+    $()
+
+
+    function displayDollars(number){
+        var dollars = number / 100; 
+        return dollars.toLocaleString("en-US", {style:"currency", currency:"USD"});
+    } 
+
+
+    
 
 
 
