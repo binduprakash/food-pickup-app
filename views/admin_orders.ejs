@@ -9,38 +9,40 @@
     <link rel="stylesheet" href="/styles/admin.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/admin.js"></script>
   </head>
   <body>
       <div class="admin_order_container">
         <div class="admin_page_header">
           <h1>List of all orders</h1>
         </div>
-        <div class="order_status">
+        <div id="new_orders" class="order_status">
           <div class="order_status_header">
             <span class="header_span">New Orders</span>
           </div>
-          <ol class="order_type">
-            <li><a href="/admin/orders">Order ID</a></li>
-            <li><a href="/admin/orders">Order ID</a></li>
-          </ol>
+          <ul class="order_type">
+          <!--   <li><a href="/admin/orders">Order ID</a></li>
+            <li><a href="/admin/orders">Order ID</a></li> -->
+          </ul>
         </div>
-        <div class="order_status">
+        <div id="in_progress_orders" class="order_status">
           <div class="order_status_header">
             <span class="header_span">Orders in Progress</span>
           </div>
-          <ol class="order_type">
-            <li><a href="/admin/orders">Order ID</a></li>
-            <li><a href="/admin/orders">Order ID</a></li>
-          </ol>
+          <ul class="order_type">
+            <!-- <li><a href="/admin/orders">Order ID</a></li>
+            <li><a href="/admin/orders">Order ID</a></li> -->
+          </ul>
         </div>
-        <div class="order_status">
+        <div id="completed_orders" class="order_status">
           <div class="order_status_header">
             <span class="header_span">Orders Completed</span>
           </div>
-          <ol class="order_type">
+          <ul class="order_type">
+            <!--
             <li><a href="/admin/orders">Order ID</a></li>
-            <li><a href="/admin/orders">Order ID</a></li>
-          </ol>
+            <li><a href="/admin/orders">Order ID</a></li> -->
+          </ul>
         </div>
       </div>
   </body>
