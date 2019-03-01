@@ -5,12 +5,14 @@ $('document').ready(function(e){
         {
             item: "Pakora",
             quantity: 2,
-            price: 600
+            price: 600,
+            itemID: 1
         }, 
         {
             item: "Naan Bread",
             quantity: 3,
-            price: 300
+            price: 300,
+            itemID: 2
         }
     ]
 
@@ -25,7 +27,7 @@ $('document').ready(function(e){
                     <span class="cart-price cart-column">${itemRow.price}</span>
                     <div class="cart-quantity cart-column">
                         <input class="cart-quantity-input" type="number" value="${itemRow.quantity}">
-                        <button class="btn btn-danger" type="button">REMOVE</button>
+                        <button class="btn btn-remove-data" data-ID =${itemRow.itemID} type="button">REMOVE</button>
                     </div>
                 </div>
             </div>`
@@ -48,12 +50,18 @@ $('document').ready(function(e){
             $('#cart-container').append($cartRow);
             
             subtotal += subtotalCost(cartData[i])
-            //console.log("--&&&&----",subtotal)
         }
         
     console.log(subtotal)
     }
     
     mockData(cart);
+
+
+
+
+
+
+
 
 });
