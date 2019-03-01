@@ -44,7 +44,9 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>")
+          .addClass("qtyForm")
+          .attr("name", menuItem.id);
         $itemRow.append($qty);
         $appHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -62,7 +64,9 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0'value='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0'value='0'>")
+          .addClass("qtyForm")
+          .attr("name", menuItem.id);
         $itemRow.append($qty);
         $tandHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -80,7 +84,9 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>")
+          .addClass("qtyForm")
+          .attr("name", menuItem.id);
         $itemRow.append($qty);
         $biryHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -98,7 +104,9 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>")
+          .addClass("qtyForm")
+          .attr("name", menuItem.id);
         $itemRow.append($qty);
         $breadHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -116,7 +124,9 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>")
+          .addClass("qtyForm")
+          .attr("name", menuItem.id);
         $itemRow.append($qty);
         $curryHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -134,7 +144,9 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>")
+          .addClass("qtyForm")
+          .attr("name", menuItem.id);
         $itemRow.append($qty);
         $dessertHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -153,7 +165,7 @@ $(() => {
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
         let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
-        $itemRow.append($qty);
+        $itemRow.append($qty).attr("name", menuItem.id);
         $bevHead.append($itemRow);
         let $itemDesc = $("<tr>")
           .addClass("itemDesc")
@@ -173,6 +185,10 @@ $(() => {
     let $submit = $("<button type='submit'>")
       .addClass("submit")
       .text("Review Order");
+
+    $("form").submit(function(event) {
+      alert("submit button clicked");
+    });
     $div.append($submit);
     $(".menu_container").append($div);
 
