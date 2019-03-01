@@ -16,19 +16,15 @@ $('document').ready(function(e){
 
     function createMenuElement (itemRow) {
         return (    
-                `<div class="cart-row">
-                <span class="cart-item cart-header cart-column">ITEM</span>
-                <span class="cart-price cart-header cart-column">PRICE</span>
-                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-            </div>
+                `
             <div class="cart-items">
                 <div class="cart-row">
                     <div class="cart-item cart-column">
-                        <span class="cart-item-title">Parkora</span>
+                        <span class="cart-item-title">${itemRow.item}</span>
                     </div>
-                    <span class="cart-price cart-column">$19.99</span>
+                    <span class="cart-price cart-column">${itemRow.price}</span>
                     <div class="cart-quantity cart-column">
-                        <input class="cart-quantity-input" type="number" value="5">
+                        <input class="cart-quantity-input" type="number" value="${itemRow.quantity}">
                         <button class="btn btn-danger" type="button">REMOVE</button>
                     </div>
                 </div>
@@ -39,10 +35,14 @@ $('document').ready(function(e){
 
     function mockData(cartData){
         
-        let $cart = createMenuElement();
         
+        for (let i = 0; i < cartData.length; i++) {
+            console.log(cartData.length)
+            var $cartRow = createMenuElement(cartData[i]);
+            $('#cart-container').append($cartRow);
+        }
         
-        $('#cart-container').prepend($cart);
+        /*
         
         cartData.forEach(function(element) {
             
@@ -50,9 +50,11 @@ $('document').ready(function(e){
             console.log(element.quantity);
             console.log(element.price)  
         });
+        */
         
     
     }
+    
     mockData(cart);
 
 });

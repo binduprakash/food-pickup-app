@@ -17,8 +17,16 @@
     <h2>Cart Details</h2>
     <form action="/order" method="POST">
       <section class ="Cart" id= "cart-container">
-    
-        <h3>Order Contact Information</h3>
+        <div class="cart-row">
+          <span class="cart-item cart-header cart-column">ITEM</span>
+          <span class="cart-price cart-header cart-column">PRICE</span>
+          <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+        </div>
+
+      </section>
+
+      <h3>Order Contact Information</h3>
+      <setion>  
         <div class="form-group mb-2">
           <label for="email">First Name:</label>
             <input class="form-control" type="text" name="firstName" style="width: 150px; margin: 1em">
