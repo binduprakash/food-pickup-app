@@ -129,13 +129,13 @@ exports.seed = function(knex, Promise) {
                   menu_type_id: 4
                 }),
                 knex('menu_items').insert({
-                  name: 'PALAK PANEER',
+                  name: 'Palak Panner',
                   price: 17.00,
                   description:'Spinach cooked in a creamy sauce with Paneer',
                   menu_type_id: 5
                 }),
                 knex('menu_items').insert({
-                  name: 'MALAI KOFTA',
+                  name: 'Malai Kofta',
                   price: 16.00,
                   description:'Vegetable balls cooked in a tomato-onion cream sauce',
                   menu_type_id: 5
