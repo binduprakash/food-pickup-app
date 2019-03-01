@@ -26,11 +26,8 @@ app.use(
 
 // Seperated Routes for each Resource
 const itemRoutes = require("./routes/menu_items");
-<<<<<<< HEAD
-=======
 const adminRoutes = require("./routes/admin");
 const customerRoutes = require("./routes/customer");
->>>>>>> cb1e79b0bcd893b646b561793d86c16063dc04f3
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -53,65 +50,10 @@ app.use(
 );
 app.use(express.static("public"));
 
-<<<<<<< HEAD
-// Menu Items API
-app.use("/api/menu_items", itemRoutes(knex));
-
-/* ------------User Routes------------*/
-// Home page
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.post("/orders", (req, res) => {
-  /*if ( cart is empty) {
-    res.status(403);
-    res.send('Cart is Empty');
-  } else { */
-  res.redirect("/order");
-  //}
-  //set cookie
-});
-
-// Order Confirmation
-app.get("/order", (req, res) => {
-  let orderID = 5000;
-  req.session.orderID = orderID;
-  console.log("----------", req.session.orderID);
-  //need to clear cookie when? req.session = null
-  res.render("order_review");
-});
-
-app.post("/order", (req, res) => {
-  //const orderID = req.params.orderID
-  res.send("User confirms and places order on this html page");
-});
-
-// Order Complete - Thank You
-app.get("/order/complete", (req, res) => {
-  res.render("order_confirmation");
-});
-
-/* ------------Admin Routes------------*/
-// Admin Orders Page
-app.get("/admin/orders", (req, res) => {
-  res.render("admin_orders");
-});
-
-//Admin Order ID Page
-app.get("/admin/orders/:orderID", (req, res) => {
-  res.render("admin_order_edit");
-});
-
-app.post("/admin/orders/:orderID/edit", (req, res) => {
-  res.render("admin_order_edit");
-});
-=======
 // Mount all resource routes
 app.use("/api/menu_items", itemRoutes(knex));
 app.use("/admin", adminRoutes());
 app.use("/", customerRoutes());
->>>>>>> cb1e79b0bcd893b646b561793d86c16063dc04f3
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
