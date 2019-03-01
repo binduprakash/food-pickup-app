@@ -26,6 +26,11 @@ app.use(
 
 // Seperated Routes for each Resource
 const itemRoutes = require("./routes/menu_items");
+<<<<<<< HEAD
+=======
+const adminRoutes = require("./routes/admin");
+const customerRoutes = require("./routes/customer");
+>>>>>>> cb1e79b0bcd893b646b561793d86c16063dc04f3
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -48,6 +53,7 @@ app.use(
 );
 app.use(express.static("public"));
 
+<<<<<<< HEAD
 // Menu Items API
 app.use("/api/menu_items", itemRoutes(knex));
 
@@ -100,6 +106,12 @@ app.get("/admin/orders/:orderID", (req, res) => {
 app.post("/admin/orders/:orderID/edit", (req, res) => {
   res.render("admin_order_edit");
 });
+=======
+// Mount all resource routes
+app.use("/api/menu_items", itemRoutes(knex));
+app.use("/admin", adminRoutes());
+app.use("/", customerRoutes());
+>>>>>>> cb1e79b0bcd893b646b561793d86c16063dc04f3
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
