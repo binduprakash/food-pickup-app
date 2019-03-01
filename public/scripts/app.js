@@ -44,7 +44,7 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
         $itemRow.append($qty);
         $appHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -62,7 +62,7 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0'value='0'>").addClass("qtyForm");
         $itemRow.append($qty);
         $tandHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -80,7 +80,7 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
         $itemRow.append($qty);
         $biryHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -98,7 +98,7 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
         $itemRow.append($qty);
         $breadHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -116,7 +116,7 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
         $itemRow.append($qty);
         $curryHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -134,7 +134,7 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
         $itemRow.append($qty);
         $dessertHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -152,7 +152,7 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0'>").addClass("qtyForm");
+        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
         $itemRow.append($qty);
         $bevHead.append($itemRow);
         let $itemDesc = $("<tr>")
@@ -169,27 +169,29 @@ $(() => {
       $article.append($bevHead);
     });
     $(".menu_container").append($article);
+    let $div = $("<div>").addClass("submitDiv");
+    let $submit = $("<button type='submit'>")
+      .addClass("submit")
+      .text("Review Order");
+    $div.append($submit);
+    $(".menu_container").append($div);
 
-    const qty = $(".qtyForm");
-    // save subtotal to a var, then send THAT final var to the subtotal.text ****************
-    qty.on("input", function(event) {
-      let $qtyform = $(this);
-      let previousItem = $qtyform.prev();
+    // const qty = $(".qtyForm");
 
-      let price = previousItem.text();
+    // // save subtotal to a var, then send THAT final var to the subtotal.text ****************
+    // qty.on("input", function(event) {
+    //   let $qtyform = $(this);
+    //   let previousItem = $qtyform.prev();
 
-      let temp = $qtyform.val();
-      price = price.substring(1);
-      var finalQty = parseFloat(temp);
-      var finalPrice = parseFloat(price);
+    //   let price = previousItem.text();
 
-      let $subtotal = $("#subtotal");
-      // console.log(subtotal);
-
-      $subtotal.text(finalQty * finalPrice);
-      // console.log(finalQty * finalPrice);
-      //let form = $qtyform.parent();
-      //console.log(form);
-    });
+    //   let temp = $qtyform.val();
+    //   price = price.substring(1);
+    //   var finalQty = parseFloat(temp);
+    //   var finalPrice = parseFloat(price);
+    //   let $subtotal = $("#subtotal");
+    //   $subtotal.text(Number(finalPrice * finalQty));
+    // });
+    // console.log(finalQty * finalPrice);
   });
 });

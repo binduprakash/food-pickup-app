@@ -32,6 +32,7 @@ body {
       border-style: solid;
       border-width: 5px;
       border-color: goldenrod;
+      background-color: #bf5f33;
     }
     .menuTitle {
       width: 90%;
@@ -47,7 +48,6 @@ body {
       border-color: goldenrod;
     }
     .menuList {
-      background-color: #bf5f33;
       border-collapse: inherit;
 
       .typeHead {
@@ -56,6 +56,7 @@ body {
 
       .itemName {
         font-size: 18px;
+        width: 400px;
       }
 
       .itemPrice {
@@ -72,60 +73,58 @@ body {
       text-align: center;
     }
 
-    .bottomLine {
-      float: right;
-    }
-  }
-  .bottomLine {
-    text-align: center;
-    .submit {
-      padding-top: 15px;
-      padding-bottom: 15px;
-      border-radius: 4px;
-      background-color: #91272b;
-      border: none;
-      color: #ffffff;
+    .submitDiv {
       text-align: center;
-      font-size: 15px;
-      width: 150px;
-      transition: all 0.5s;
-      margin: 5px;
-    }
+      .submit {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-radius: 4px;
+        background-color: #91272b;
+        border: none;
+        color: #ffffff;
+        text-align: center;
+        font-size: 15px;
+        width: 150px;
+        transition: all 0.5s;
+        margin: 5px;
+      }
 
-    .submit span {
-      cursor: pointer;
-      display: inline-block;
-      position: relative;
-      transition: 0.5s;
-    }
+      .submit span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+      }
 
-    .submit span:after {
-      content: "\00bb";
-      position: absolute;
-      opacity: 0;
-      top: 0;
-      right: -20px;
-      transition: 0.5s;
-    }
+      .submit span:after {
+        content: "\00bb";
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+      }
 
-    .submit:hover span {
-      padding-right: 25px;
-    }
+      .submit:hover span {
+        padding-right: 25px;
+      }
 
-    .submit:hover span:after {
-      opacity: 1;
-      right: 0;
+      .submit:hover span:after {
+        opacity: 1;
+        right: 0;
+      }
     }
   }
-  .thankyou {
-    width: 50%;
-    background-color: #bf5f33;
-    position: absolute;
-    left: 25%;
-    text-align: center;
-    border-style: solid;
-    border-width: 5px;
-    border-color: goldenrod;
-    border-radius: 8px;
-  }
+}
+
+.thankyou {
+  width: 50%;
+  background-color: #bf5f33;
+  position: absolute;
+  left: 25%;
+  text-align: center;
+  border-style: solid;
+  border-width: 5px;
+  border-color: goldenrod;
+  border-radius: 8px;
 }
