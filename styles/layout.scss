@@ -12,16 +12,23 @@ body {
     font-family: cursive;
     text-align: center;
   }
-
+  h3 {
+    color: palegoldenrod;
+    font-family: cursive;
+    text-align: center;
+  }
   .container {
-    height: 500px;
+    height: 350px;
     display: flex;
     align-items: center;
 
     .orderForm {
       width: 350px;
     }
-
+    .menu_container {
+      max-height: 350px;
+      overflow-y: auto;
+    }
     .menuTitle {
       width: 90%;
     }
@@ -37,26 +44,39 @@ body {
     }
     .menuList {
       background-color: #bf5f33;
-      width: inherit;
-      overflow-y: auto;
       border-style: solid;
       border-width: 5px;
       border-color: goldenrod;
       border-collapse: inherit;
+
+      .typeHead {
+        font-size: 24px;
+      }
+
+      .itemName {
+        font-size: 18px;
+      }
+
+      .itemPrice {
+        font-size: 18px;
+      }
+      .itemDesc {
+        font-size: 12px;
+        font-style: italic;
+      }
     }
 
-    .qty {
-      width: 35px;
-      text-align: center;
-    }
-
-    .qtyColumn {
+    .qtyForm {
+      width: 50px;
       text-align: center;
     }
 
     .bottomLine {
       float: right;
     }
+  }
+  .buttonHolder {
+    text-align: center;
     .submit {
       padding-top: 15px;
       padding-bottom: 15px;
@@ -68,9 +88,7 @@ body {
       font-size: 15px;
       width: 150px;
       transition: all 0.5s;
-      cursor: pointer;
       margin: 5px;
-      float: right;
     }
 
     .submit span {

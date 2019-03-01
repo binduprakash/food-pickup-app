@@ -21,19 +21,23 @@
   </head>
 
   <body>
-    <h1>Naan Stop!</h1>
+    <h1>Naan Stop!</h1><br /><br />
+    <h3>Our Menu</h3>
     <section class="container">
       <article class="menuType">
         <ul>
-          <li>GOTO APP</li>
-          <li>GOTO ENTREE</li>
-          <li>GOTO DESSERT</li>
-          <li>GOTO ADD-ON</li>
-          <li>GOTO DRINKS</li>
+          <li><a href="#app">Appetizers</a></li>
+          <li><a href="#tandoori">Tandoori</a></li>
+          <li><a href="#biryani">Biryani</a></li>
+          <li><a href="#bread">Breads</a></li>
+          <li><a href="#curries">Curries</a></li>
+          <li><a href="#dessert">Desserts</a></li>
+          <li><a href="#beverages">Beverages</a></li>
         </ul>
       </article>
-      <form class="orderForm" action="/order" method="POST">
-        <!-- SHOULD BE A FORM/JQUERY BUILD-->
+      <section class="menu_container"></section>
+      <!-- <form class="orderForm" action="/order" method="POST">
+        SHOULD BE A FORM/JQUERY BUILD
         <table class="menuList">
           <tr>
             <th class="menuTitle">
@@ -55,10 +59,9 @@
             <td><input class="qty" name="qty" type="text"></input></td>
           </tr>
           <tr class="bottomLine"><td>total:</td></tr>
-          <tr><td><button class="submit" type="submit"><span>Review Order </button></td></tr>
-
-        </table>
-      </form>
-    </section>
+          <tr><td></td></tr> 
+        </table> --->
+      </section>
+      <div class="buttonHolder"><button class="submit" type="submit"><span>Review Order </button></div>
   </body>
 </html>
