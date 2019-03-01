@@ -2,6 +2,86 @@ body {
   .admin_order_container {
     text-align: center;
 
+    .order_form {
+      width: 50%;
+      margin : 0 auto;
+      margin-top:65px;
+      border-width: 2px;
+      color: #FAF0E6;
+
+      .customer_details{
+        width: 60%;
+        margin: 0 auto;
+        text-align: left;
+
+        .name{
+          font-size: 18px;
+          display: block;
+        }
+
+        .phone{
+          font-size: 18px;
+          display: block;
+        }
+      }
+
+      .order_menu_table{
+        margin: 0 auto;
+        margin-top: 20px;
+
+        .sl_no{
+          width:70px;
+          padding: 5px;
+        }
+
+        .menu_name{
+          width: 200px;
+          padding: 5px;
+          text-align: left;
+        }
+
+        .quantity{
+          width: 120px;
+          padding: 5px;
+        }
+
+        .currency{
+          text-align: right;
+          padding: 5px;
+        }
+      }
+
+      .status_table{
+        margin: 0 auto;
+        margin-top: 40px;
+
+        .pick_time{
+          padding: 10px;
+        }
+
+        .order_state{
+          padding: 10px;
+        }
+      }
+
+      .save_order{
+        background-color: green;
+        color:white;
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 50px;
+      }
+
+      .go_back{
+        background-color: orange;
+        color: white;
+        padding: 10px;
+        border-radius: 4px;
+        margin-right: 10px;
+        margin-top: 50px;
+      }
+    }
+
     .header_span {
       color: palegoldenrod;
       font-size: 20px;
