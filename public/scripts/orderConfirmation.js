@@ -16,8 +16,8 @@ $('document').ready(function(e){
 
     function createMenuElement (itemRow) {
         return (    
-                `
-            <div class="cart-items">
+            
+            `<div class="cart-items">
                 <div class="cart-row">
                     <div class="cart-item cart-column">
                         <span class="cart-item-title">${itemRow.item}</span>
@@ -33,27 +33,25 @@ $('document').ready(function(e){
 
     }
 
+    //function to calculate the cost of each item on inital order details
     function subtotalCost (itemRow) {
         let itemCost = itemRow.quantity * itemRow.price;
-        return itemCost
+        return itemCost;
     }
-
 
     let subtotal = 0;
 
     function mockData(cartData){
         for (let i = 0; i < cartData.length; i++) {
-            console.log(cartData.length)
             
             var $cartRow = createMenuElement(cartData[i]);
             $('#cart-container').append($cartRow);
             
             subtotal += subtotalCost(cartData[i])
-            console.log("--&&&&----",subtotal)
+            //console.log("--&&&&----",subtotal)
         }
         
     console.log(subtotal)
-    
     }
     
     mockData(cart);
