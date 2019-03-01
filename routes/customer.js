@@ -1,9 +1,9 @@
 "use strict";
 
-const express     = require("express");
-const customerRoutes   = express.Router();
-const bodyParser  = require("body-parser");
-//const twilio = require('./public/scripts/twilio')
+const express           = require("express");
+const customerRoutes    = express.Router();
+const bodyParser        = require("body-parser");
+const twilio            = require('../public/scripts/twilio.js')
 
 module.exports = function() {
 
@@ -34,19 +34,18 @@ module.exports = function() {
     customerRoutes.post("/order", (req, res) => {
         //const orderID = req.params.orderID
         console.log("---------------",req.body)
-        /*
-        let time = "30 minutes";
-        let phoneNumber = "+17789274265"
-
-        let stringMessage = `Your order will be ready in ${time}`
+        
+        //Admin Phone #        
+        let phoneNumber = "+17789274265";
+        let stringMessage = "Naan Stop - you have a new order to verify";
         
         twilio.twilioTextMessage(stringMessage, phoneNumber)
-        */
         res.redirect("/order/complete");
     });
     
     // Order Complete - Thank You
     customerRoutes.get("/order/complete", (req, res) => {
+        
         res.render("order_confirmation");
     });
     return customerRoutes;

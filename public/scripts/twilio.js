@@ -1,6 +1,6 @@
-//secrets file containing token and phone numbers
+//secrets file contains token and phone numbers
 
-twilioTextMessage = function(stringMsg, phone) {
+exports.twilioTextMessage = function(stringMsg, phone) {
     
     console.log(stringMsg, phone)
 
@@ -18,12 +18,4 @@ twilioTextMessage = function(stringMsg, phone) {
         from: secrets.twilioFrom // From a valid Twilio number
     })
     .then((message) => console.log(message.sid));
-
 }
-
-let time = "30 minutes";
-let phoneNumber = "+17789274265"
-
-let stringMessage = `Your order will be ready in ${time}`
-
-twilioTextMessage(stringMessage, phoneNumber)
