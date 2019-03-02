@@ -22,63 +22,63 @@ exports.seed = function(knex, Promise) {
                         total_cost: 97.0,
                         customer_first_name: "Bindu",
                         customer_last_name: "Prakash",
-                        customer_phone_number: "987654321"
+                        customer_phone_number: "+16046006082"
                       }),
                       knex("orders").insert({
                         status_id: 1,
                         total_cost: 63.45,
                         customer_first_name: "John",
                         customer_last_name: "Connolly",
-                        customer_phone_number: "123456789"
+                        customer_phone_number: "+17788775276"
                       }),
                       knex("orders").insert({
                         status_id: 1,
                         total_cost: 10.3,
                         customer_first_name: "Tyler",
                         customer_last_name: "Tomczyk",
-                        customer_phone_number: "129834765"
+                        customer_phone_number: "+17789274265"
                       }),
                       knex("orders").insert({
                         status_id: 2,
                         total_cost: 75.5,
                         customer_first_name: "John",
                         customer_last_name: "Connolly",
-                        customer_phone_number: "123456789"
+                        customer_phone_number: "+17788775276"
                       }),
                       knex("orders").insert({
                         status_id: 2,
                         total_cost: 87.0,
                         customer_first_name: "Tyler",
                         customer_last_name: "Tomczyk",
-                        customer_phone_number: "129834765"
+                        customer_phone_number: "+17789274265"
                       }),
                       knex("orders").insert({
                         status_id: 2,
                         total_cost: 76.0,
                         customer_first_name: "Bindu",
                         customer_last_name: "Prakash",
-                        customer_phone_number: "987654321"
+                        customer_phone_number: "+16046006082"
                       }),
                       knex("orders").insert({
                         status_id: 3,
                         total_cost: 87.55,
                         customer_first_name: "Tyler",
                         customer_last_name: "Tomczyk",
-                        customer_phone_number: "129834765"
+                        customer_phone_number: "+17789274265"
                       }),
                       knex("orders").insert({
                         status_id: 3,
                         total_cost: 19.95,
                         customer_first_name: "Bindu",
                         customer_last_name: "Prakash",
-                        customer_phone_number: "987654321"
+                        customer_phone_number: "+16046006082"
                       }),
                       knex("orders").insert({
                         status_id: 3,
                         total_cost: 47.8,
                         customer_first_name: "John",
                         customer_last_name: "Connolly",
-                        customer_phone_number: "123456789"
+                        customer_phone_number: "+17788775276"
                       })
                     ]).then(function() {
                       return Promise.all([
