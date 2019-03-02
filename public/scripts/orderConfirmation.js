@@ -1,6 +1,43 @@
 
 $('document').ready(function(e){
 
+    array = [];
+
+    $.ajax({
+        method: "GET",
+        url: "/api/menu_items"
+    }).done(menu_items => {
+       array.push(menu_items);
+    });
+
+    console.log("-------",array)
+
+    var BegCart = [
+        {
+            itemID: 1,
+            Qty: 2
+        },
+        {
+            itemID: 2,
+            Qty: 3   
+        }
+    ]
+    
+    /*
+    let tempForm = 0;
+    tempForm.forEach(function(element) {
+        if (element[1] > 0) {
+            orderForm.push({"itemID":element[0], "Qty": element[1]});
+        }
+    });
+    */
+
+
+
+
+
+
+
     var cart = [
         {
             item: "Pakora",
@@ -57,22 +94,15 @@ $('document').ready(function(e){
     
     mockData(cart);
 
-
-
-
-    var plant = document.getElementById('data-ID1');
-
-    $()
-
-
     function displayDollars(number){
         var dollars = number / 100; 
         return dollars.toLocaleString("en-US", {style:"currency", currency:"USD"});
     } 
 
-
     
-
+    $("#cartSubtotal").text(`Subtotal:${displayDollars(subtotal)}`);
+    $("#cartTaxes").text(`Taxes:${displayDollars(subtotal*.05)}`);
+    $("#cartValue").text(`Total:${displayDollars(subtotal*1.05)}`);
 
 
 
