@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="/styles/admin.css" type="text/css" />
 
       <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+      <script type="text/javascript" src="/scripts/admin_order_details.js"></script>
     </head>
 
   <body>
@@ -16,72 +17,49 @@
     <div class="admin_order_container">
       <div class="order_form">
         <div class="customer_details">
-          <span class="name">Customer Name: John</span>
-          <span class="phone">Contact Number: 123456789</span>
+          <span class="name" id="customer_name"></span>
+          <span class="phone" id="customer_phone"></span>
         </div>
-        <table class="order_menu_table">
+        <table class="order_menu_table" id="menu_table">
           <th>Sl No</th>
           <th class="menu_name">Menu Item</th>
           <th>Quantity</th>
           <th>Subtotal</th>
-          <tr>
-            <td class="sl_no">1.</td>
-            <td class="menu_name">Vegetable Samosa</td>
-            <td class="quanity">3</td>
-            <td class="currency">$18.00</td>
-          </tr>
-          <tr>
-            <td class="sl_no">2.</td>
-            <td class="menu_name">Chicken Biryani</td>
-            <td class="quantity">1</td>
-            <td class="currency">$17.95</td>
-          </tr>
-          <tr>
-            <td class="sl_no">3.</td>
-            <td class="menu_name">Kheer</td>
-            <td class="quantity">1</td>
-            <td class="currency">$6.00</td>
-          </tr>
-          <tr>
-            <td colspan="2"/>
-            <td>Taxes</td>
-            <td class="currency">
-              $2.30
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2"/>
-            <td>Total</td>
-            <td class="currency">
-              $44.25
-            </td>
-          </tr>
         </table>
+        <form action="/admin/order_edit" method="POST">
         <table class="status_table">
           <tr>
             <td class="pick_time">Order can be picked in:</td>
             <td>
-              <select>
-                <option value="20m">20 minutes</option>
-                <option value="30m">30 minutes</option>
-                <option value="45m">45 minutes</option>
-                <option value="60m">60 minutes</option>
+              <select id="pick_up_select">
+                <option value="20">20 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="45">45 minutes</option>
+                <option value="60">60 minutes</option>
               </select>
             </td>
           </tr>
           <tr>
             <td class="order_state">Order Status:</td>
             <td>
-              <select>
-                <option value="new">New Order</option>
-                <option value="inprogress">Order in progress</option>
-                <option value="completed">Order completed</option>
+              <select id="order_status_select">
+                <option value="1">New Order</option>
+                <option value="2">Order in progress</option>
+                <option value="3">Order completed</option>
               </select>
             </td>
           </tr>
+          <tr id="order_status_controls">
+            <td>
+              <a href="/admin/orders" id="go_back_button" >Go Back</a>
+            </td>
+            <td>
+              <input id="save_order_button" type="submit" value="Save Order" class="save_order"/>
+            </td>
+          </tr>
         </table>
-        <button type="submit" class="go_back">Go Back</button>
-        <button type="submit" class="save_order">Save Order</button>
+      </div>
+      </form>
       </div>
     </div>
   </body>

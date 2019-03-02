@@ -41,7 +41,7 @@ function renderOrders(orders) {
 function createOrderElement(order){
   //<li><a href="/admin/orders">Order ID</a></li>
   let $liTag = $("<li>").addClass("li");
-  let $aTag = $("<a>").attr("href", "/admin/orders/" + order.id);
+  let $aTag = $("<a>").attr("href", "/admin/order_edit/?order_id=" + order.id);
   $aTag.text(order.id + ' - ' + order.customer_first_name);
   $liTag.append($aTag);
   $liTag.append($("<span>").text(' - ' + getFormattedTime(order.created_at)));

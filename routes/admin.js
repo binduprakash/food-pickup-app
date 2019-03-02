@@ -1,7 +1,8 @@
 "use strict";
 
 const express     = require("express");
-const adminRoutes   = express.Router();
+const adminRoutes = express.Router();
+const twilio      = require('../public/scripts/twilio.js')
 
 module.exports = function(knex) {
 
@@ -19,7 +20,7 @@ module.exports = function(knex) {
 
     adminRoutes.get("/orders_details_json/:orderID", (req, res) => {
       knex
-      .select("orders.id", "order_status.name", "orders.created_at", "orders.customer_first_name", "orders.customer_phone_number", "order_menu_items.menu_items_id", "order_menu_items.quantity", "menu_items.name", "menu_items.price", "orders.total_cost")
+      .select("orders.id", "orders.status_id", "orders.created_at", "orders.customer_first_name", "orders.customer_last_name", "orders.customer_phone_number", "order_menu_items.menu_items_id", "order_menu_items.quantity", "menu_items.name", "menu_items.price", "orders.total_cost")
       .from("orders")
       .where({"orders.id": req.params.orderID})
       .innerJoin('order_status', 'orders.status_id', 'order_status.id')
@@ -33,16 +34,25 @@ module.exports = function(knex) {
 
     // Admin Orders Page
     adminRoutes.get("/orders", (req, res) => {
-        res.render("admin_orders");
+      res.render("admin_orders");
     });
 
     //Admin Order ID Page
-    adminRoutes.get('/orders/:orderID', (req, res) => {
-        res.render("admin_order_edit");
+    adminRoutes.get('/order_edit', (req, res) => {
+      res.render("admin_order_edit");
     });
 
-    adminRoutes.post('/orders/:orderID', (req, res) => {
-        res.render("admin_order_edit");
+    adminRoutes.post('/order_edit', (req, res) => {
+      let new_status = req.body["order_status_select"];
+      let order_id = req.body["order_id"];
+      knex("orders")
+      .where({"id": order_id})
+      .update({"status_id": new_status})
+      .then(results => {
+        console.log("status updated");
+        res.json(results);
+      })
+      //res.render("admin_order_edit");
     });
     return adminRoutes;
 }
