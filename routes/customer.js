@@ -5,6 +5,30 @@ const customerRoutes = express.Router();
 const bodyParser = require("body-parser");
 const twilio = require("../public/scripts/twilio.js");
 
+function itemRowCost (itemRow) {
+    let itemCost = itemRow.Qty * itemRow.price;
+    return itemCost;
+}
+
+function calculateCart(cartData){
+    console.log("-------",cartData)
+    let subtotal = 0;
+    for (let i = 0; i < cartData.length; i++) {
+        subtotal += itemRowCost(cartData[i])
+    }
+    return subtotal;
+}
+
+function displayDollars(number){
+    var dollars = number; 
+    return dollars.toLocaleString("en-US", {style:"currency", currency:"USD"});
+} 
+
+
+
+
+
+
 module.exports = function(knex) {
   // Home page
   customerRoutes.get("/", (req, res) => {
@@ -29,8 +53,13 @@ module.exports = function(knex) {
             });
           }
         });
-        console.log(orderForm);
-        res.render("order_review", orderForm);
+        //console.log(orderForm);
+
+        let subtotal = calculateCart(orderForm);
+        console.log(subtotal)
+
+        let templateVars = {orders: orderForm, subtotal: subtotal, displayDollars: displayDollars}
+        res.render("order_review", templateVars);
       });
   });
 
@@ -53,8 +82,14 @@ module.exports = function(knex) {
   });
 
   // Order Complete - Thank You
-  customerRoutes.get("/order/complete", (req, res) => {
+    customerRoutes.get("/order/complete", (req, res) => {
     res.render("order_confirmation");
   });
   return customerRoutes;
 };
+
+
+
+
+//--------------------------------
+
