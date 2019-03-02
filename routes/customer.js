@@ -5,29 +5,29 @@ const customerRoutes = express.Router();
 const bodyParser = require("body-parser");
 const twilio = require("../public/scripts/twilio.js");
 
+//--------Functions--------------------->
+
 function itemRowCost (itemRow) {
+    //calculates cost of each item in cart for order review page
     let itemCost = itemRow.Qty * itemRow.price;
     return itemCost;
-}
+};
 
 function calculateCart(cartData){
-    console.log("-------",cartData)
-    let subtotal = 0;
-    for (let i = 0; i < cartData.length; i++) {
+  //calculates total cost of cart for order review page
+  let subtotal = 0;
+  for (let i = 0; i < cartData.length; i++) {
         subtotal += itemRowCost(cartData[i])
     }
     return subtotal;
-}
+};
 
 function displayDollars(number){
     var dollars = number; 
     return dollars.toLocaleString("en-US", {style:"currency", currency:"USD"});
-} 
+};
 
-
-
-
-
+//-------customer routes---------------->
 
 module.exports = function(knex) {
   // Home page
@@ -53,12 +53,9 @@ module.exports = function(knex) {
             });
           }
         });
-        //console.log(orderForm);
 
         let subtotal = calculateCart(orderForm);
-        console.log(subtotal)
-
-        let templateVars = {orders: orderForm, subtotal: subtotal, displayDollars: displayDollars}
+        let templateVars = {orders: orderForm, subtotal: subtotal, displayDollars: displayDollars};
         res.render("order_review", templateVars);
       });
   });
@@ -87,9 +84,4 @@ module.exports = function(knex) {
   });
   return customerRoutes;
 };
-
-
-
-
-//--------------------------------
 

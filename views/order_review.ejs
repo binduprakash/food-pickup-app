@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/styles/OrderConfirmation.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/orderConfirmation.js"></script>
+    <script type="text/javascript" src="/scripts/formControl.js"></script>
   </head>
 
   <body>
@@ -23,20 +23,20 @@
           <span class="cart-quantity cart-header cart-column">QUANTITY</span>
         </div>
 
+        <!-- for each to iterate over order and display items from index page -->
         <% orders.forEach((order)=> { %>
           <div class="cart-items">
             <div class="cart-row">
-                <div class="cart-item cart-column">
-                    <span class="cart-item-title"><%= order.itemName %></span>
-                </div>
-                <span class="cart-price cart-column"><%= order.price %></span>
-                <div class="cart-quantity cart-column">
+              <div class="cart-item cart-column">
+                <span class="cart-item-title"><%= order.itemName %></span>
+              </div>
+                <span class="cart-price cart-column"><%= displayDollars(order.price) %></span>
+              <div class="cart-quantity cart-column">
                     <input class="cart-quantity-input"  type="number" value=<%= order.Qty %>>
                     <button class="btn btn-remove-data"  type="button">REMOVE</button>
-                </div>
+              </div>
             </div>
-        </div>
-
+          </div>
         <% }); %>
         
       </section>
@@ -48,21 +48,21 @@
       <h3>Order Contact Information</h3>
       <setion>  
         <div class="form-group mb-2">
-          <label for="email">First Name:</label>
-          <input class="form-control" type="text" name="firstName" style="width: 150px; margin: 1em" />
-          <label for="email">Last Name:</label>
-          <input class="form-control" type="text" name="lastName" style="width: 150px; margin: 1em" />
+          <label for="firstName">First Name:</label>
+          <input id= "firstName" class="form-control" type="text" name="firstName" style="width: 150px; margin: 1em" />
+          <label for="lastName">Last Name:</label>
+          <input id="lastName" class="form-control" type="text" name="lastName" style="width: 150px; margin: 1em" />
 
           <br />
           <label for="phoneNumber">Phone Number:</label>
-          <input class="form-control" type="text" name="phoneNumber" style="width: 150px; margin: 1em" />
+          <input id="phoneInput" class="form-control" type="text" name="phoneNumber" style="width: 150px; margin: 1em" />
         </div>
 
         <div>
           <p></p>
         </div>
 
-        <button class="btn orderConfirm" type="submit">Confirm Order</button>
+        <input id="confirmOrder" type="submit" value="Confirm Order">
       </section>
     </form>
   </body>
