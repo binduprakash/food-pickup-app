@@ -1,9 +1,9 @@
 "use strict";
 
-const express           = require("express");
-const customerRoutes    = express.Router();
-const bodyParser        = require("body-parser");
-const twilio            = require('../public/scripts/twilio.js')
+const express = require("express");
+const customerRoutes = express.Router();
+const bodyParser = require("body-parser");
+const twilio = require("../public/scripts/twilio.js");
 
 module.exports = function(knex) {
   // Home page
@@ -34,25 +34,22 @@ module.exports = function(knex) {
       });
   });
 
-  // Order Confirmation
   customerRoutes.get("/revieworder", (req, res) => {
-    // let orderID = 5000;
-    // req.session.orderID = orderID;
-    // console.log("---********-", req.session.orderID);
-    //need to clear cookie when? req.session = null
+    res.redirect("/");
+  });
+  customerRoutes.get("/confirmorder", (req, res) => {
     res.redirect("/");
   });
 
-  customerRoutes.post("/order", (req, res) => {
-    //const orderID = req.params.orderID
-    console.log("---------------",req.body)
-        
-    //Admin Phone #     
-    let phoneNumber = "+17789274265";
-    let stringMessage = "Naan Stop - you have a new order to verify";
-    
-    twilio.twilioTextMessage(stringMessage, phoneNumber)
-    res.redirect("/order/complete");
+  customerRoutes.post("/confirmorder", (req, res) => {
+    let templateVars = { phone: req.body.phoneNumber };
+
+    //Admin Phone #
+    // let phoneNumber = "+17789274265";
+    // let stringMessage = "Naan Stop - you have a new order to verify";
+
+    // twilio.twilioTextMessage(stringMessage, phoneNumber);
+    res.render("order_confirmation", templateVars);
   });
 
   // Order Complete - Thank You

@@ -28,6 +28,7 @@ app.use(
 const itemRoutes = require("./routes/menu_items");
 const adminRoutes = require("./routes/admin");
 const customerRoutes = require("./routes/customer");
+const orderRoutes = require("./routes/orders");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -54,6 +55,7 @@ app.use(express.static("public"));
 app.use("/api/menu_items", itemRoutes(knex));
 app.use("/admin", adminRoutes(knex));
 app.use("/", customerRoutes(knex));
+app.use("/api/orders", orderRoutes(knex));
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
