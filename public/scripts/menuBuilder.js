@@ -164,8 +164,10 @@ $(() => {
           .addClass("itemPrice")
           .text("$" + menuItem.price);
         $itemRow.append($itemPrice);
-        let $qty = $("<input type='number' min='0' value='0'>").addClass("qtyForm");
-        $itemRow.append($qty).attr("name", menuItem.id);
+        let $qty = $("<input type='number' min='0' value='0'>")
+          .addClass("qtyForm")
+          .attr("name", menuItem.id);
+        $itemRow.append($qty);
         $bevHead.append($itemRow);
         let $itemDesc = $("<tr>")
           .addClass("itemDesc")
@@ -186,9 +188,6 @@ $(() => {
       .addClass("submit")
       .text("Review Order");
 
-    $("form").submit(function(event) {
-      alert("submit button clicked");
-    });
     $div.append($submit);
     $(".menu_container").append($div);
 

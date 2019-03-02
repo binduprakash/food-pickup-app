@@ -1,30 +1,45 @@
 "use strict";
-
 const express = require("express");
 const customerRoutes = express.Router();
 const bodyParser = require("body-parser");
 //const twilio = require('./public/scripts/twilio')
 
-module.exports = function() {
+module.exports = function(knex) {
   // Home page
   customerRoutes.get("/", (req, res) => {
     res.render("index");
   });
 
-  customerRoutes.post("/", (req, res) => {
-    console.log(req.body);
-    res.send("Hello!");
-    //}
-    //set cookie
+  customerRoutes.post("/revieworder", (req, res) => {
+    let menuItems;
+    knex
+      .select("*")
+      .from("menu_items")
+      .then(results => {
+        menuItems = results;
+        let orderForm = [];
+        let tempForm = Object.entries(req.body);
+        tempForm.forEach(function(element) {
+          if (element[1] > 0) {
+            menuItems.forEach(function(item) {
+              if (item.id === Number(element[0])) {
+                orderForm.push({ itemID: element[0], Qty: element[1], itemName: item.name, price: item.price });
+              }
+            });
+          }
+        });
+        console.log(orderForm);
+        res.render("order_review", orderForm);
+      });
   });
 
   // Order Confirmation
-  customerRoutes.get("/order", (req, res) => {
-    let orderID = 5000;
-    req.session.orderID = orderID;
-    console.log("---********-", req.session.orderID);
+  customerRoutes.get("/revieworder", (req, res) => {
+    // let orderID = 5000;
+    // req.session.orderID = orderID;
+    // console.log("---********-", req.session.orderID);
     //need to clear cookie when? req.session = null
-    res.render("order_review");
+    res.redirect("/");
   });
 
   customerRoutes.post("/order", (req, res) => {

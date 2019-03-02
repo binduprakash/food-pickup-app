@@ -9,7 +9,6 @@ module.exports = knex => {
       .select("*")
       .from("menu_items")
       .then(results => {
-        console.log("results appear", results);
         res.json(results);
       });
   });
