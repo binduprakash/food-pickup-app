@@ -68,7 +68,8 @@ $(document).ready(function() {
       method: 'POST',
       data: {
         order_status_select:$("#order_status_select").children("option:selected").val(),
-        order_id:getUrlParameter("order_id")
+        order_id:getUrlParameter("order_id"),
+        pick_up_select: $("#pick_up_select").children("option:selected").val(),
       }
     })
       .then(function (response) {

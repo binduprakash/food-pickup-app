@@ -45,11 +45,17 @@ module.exports = function(knex) {
     adminRoutes.post('/order_edit', (req, res) => {
       let new_status = req.body["order_status_select"];
       let order_id = req.body["order_id"];
+      let pick_up_minutes = req.body["pick_up_select"];
+
       knex("orders")
       .where({"id": order_id})
       .update({"status_id": new_status})
       .then(results => {
         console.log("status updated");
+        let phoneNumber = "+16046006082";
+        let stringMessage = `Thanks for ordering at Naan Stop. Your Order :${order_id}
+         will be ready in ${pick_up_minutes} minutes.`;
+        twilio.twilioTextMessage(stringMessage, phoneNumber)
         res.json(results);
       })
       //res.render("admin_order_edit");
