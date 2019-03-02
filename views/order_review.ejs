@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/styles/OrderConfirmation.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/orderConfirmation.js"></script>
   </head>
 
   <body>
@@ -23,20 +22,20 @@
           <span class="cart-quantity cart-header cart-column">QUANTITY</span>
         </div>
 
+        <!-- for each to iterate over order and display items from index page -->
         <% orders.forEach((order)=> { %>
           <div class="cart-items">
             <div class="cart-row">
-                <div class="cart-item cart-column">
-                    <span class="cart-item-title"><%= order.itemName %></span>
-                </div>
+              <div class="cart-item cart-column">
+                <span class="cart-item-title"><%= order.itemName %></span>
+              </div>
                 <span class="cart-price cart-column"><%= order.price %></span>
-                <div class="cart-quantity cart-column">
+              <div class="cart-quantity cart-column">
                     <input class="cart-quantity-input"  type="number" value=<%= order.Qty %>>
                     <button class="btn btn-remove-data"  type="button">REMOVE</button>
-                </div>
+              </div>
             </div>
-        </div>
-
+          </div>
         <% }); %>
         
       </section>
