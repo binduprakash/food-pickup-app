@@ -42,7 +42,7 @@ module.exports = function(knex) {
   });
 
   customerRoutes.post("/confirmorder", (req, res) => {
-    let templateVars = { phone: req.body.phoneNumber };
+    let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
     //Admin Phone #
     // let phoneNumber = "+17789274265";
