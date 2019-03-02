@@ -64,10 +64,39 @@ module.exports = function(knex) {
     res.redirect("/");
   });
   customerRoutes.get("/confirmorder", (req, res) => {
+   
     res.redirect("/");
   });
 
   customerRoutes.post("/confirmorder", (req, res) => {
+
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var phoneNumber = req.body.phoneNumber;
+    var ids = req.body.id;
+    var qtys = req.body.qty;
+    var totalprice = parseFloat(req.body.totalprice);
+    console.log(ids, qtys, totalprice);
+
+    knex('orders').insert({
+      status_id: 1,
+      total_cost: totalprice,
+      customer_first_name: firstName,
+      customer_last_name: lastName,
+      customer_phone_number: phoneNumber
+    }).returning('id')
+    .then((id) => {  
+      console.log("we are in here ");
+      console.log(id);                                                                                                                                                                                                             
+      var count = ids.length;
+      for(var i = 0; i<count; i++){
+        return knex('order_menu_items').insert({
+          order_id: id[0],
+          menu_items_id: parseInt(ids[i]),
+          quantity: parseInt(qtys[i])
+        });
+      }
+    });
     let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
     //Admin Phone #

@@ -9,7 +9,22 @@
     <link rel="stylesheet" href="/styles/OrderConfirmation.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/formControl.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/formControl.js"></script> -->
+    <!-- <script type="text/javascript">
+      $('document').ready(function(e){
+        $('#testform').on('submit',function(e){
+            e.preventDefault();
+
+            $('.cart-items').each(function( index, obj ) {
+              var t = obj;
+              console.log(t);
+            });
+            //var data = $("form").serialize();
+            //console.log("test ", data);
+        });
+      });
+    </script> -->
+
   </head>
 
   <body>
@@ -22,9 +37,10 @@
           <span class="cart-price cart-header cart-column">PRICE</span>
           <span class="cart-quantity cart-header cart-column">QUANTITY</span>
         </div>
-
+        
         <!-- for each to iterate over order and display items from index page -->
         <% orders.forEach((order)=> { %>
+
           <div class="cart-items">
             <div class="cart-row">
               <div class="cart-item cart-column">
@@ -32,18 +48,20 @@
               </div>
                 <span class="cart-price cart-column"><%= displayDollars(order.price) %></span>
               <div class="cart-quantity cart-column">
-                    <input class="cart-quantity-input"  type="number" value=<%= order.Qty %>>
+                    <input type="hidden" name="id" value="<%= order.itemID %>" />
+                    <input class="cart-quantity-input"  type="text" value='<%= order.Qty %>' name="qty"/>
                     <button class="btn btn-remove-data"  type="button">REMOVE</button>
               </div>
             </div>
           </div>
         <% }); %>
-        
+    
       </section>
         
         <span id ="cartSubtotal" class="classPrice">Subtotal:<%= displayDollars(subtotal) %> </span> <br>
         <span id ="cartTaxes" class="classPrice">Taxes:<%= displayDollars(subtotal * 0.05) %></span> <br>
         <span id ="cartValue" class="classPrice">Order Total: <%= displayDollars(subtotal * 1.05) %></span> <br>
+        <input type="hidden" id="totalprice" name="totalprice" value=<%= (subtotal * 1.05) %>>
 
       <h3>Order Contact Information</h3>
       <setion>  
@@ -57,12 +75,12 @@
           <label for="phoneNumber">Phone Number:</label>
           <input id="phoneInput" class="form-control" type="text" name="phoneNumber" style="width: 150px; margin: 1em" />
         </div>
-
+    
         <div>
           <p></p>
         </div>
 
-        <input id="confirmOrder" type="submit" value="Confirm Order">
+        <input id="confirmOrder" type="submit" value="Confirm Order" />
       </section>
     </form>
   </body>
