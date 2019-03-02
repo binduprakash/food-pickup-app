@@ -1,42 +1,5 @@
 $('document').ready(function(e){
-
-    array = [];
-
-    $.ajax({
-        method: "GET",
-        url: "/api/menu_items"
-    }).done(menu_items => {
-       array.push(menu_items);
-    });
-
-    console.log("-------",array)
-
-    var BegCart = [
-        {
-            itemID: 1,
-            Qty: 2
-        },
-        {
-            itemID: 2,
-            Qty: 3   
-        }
-    ]
-    
     /*
-    let tempForm = 0;
-    tempForm.forEach(function(element) {
-        if (element[1] > 0) {
-            orderForm.push({"itemID":element[0], "Qty": element[1]});
-        }
-    });
-    */
-
-
-
-
-
-
-
     var cart = [
         {
             item: "Pakora",
@@ -72,38 +35,28 @@ $('document').ready(function(e){
     }
 
     //function to calculate the cost of each item on inital order details
-    function subtotalCost (itemRow) {
+    function itemRowCost (itemRow) {
         let itemCost = itemRow.quantity * itemRow.price;
         return itemCost;
     }
 
     let subtotal = 0;
 
-    function mockData(cartData){
+    function calculateCart(cartData){
         for (let i = 0; i < cartData.length; i++) {
-            
             var $cartRow = createMenuElement(cartData[i]);
             $('#cart-container').append($cartRow);
-            
-            subtotal += subtotalCost(cartData[i])
+            subtotal += itemRowCost(cartData[i])
         }
-        
-    console.log(displayDollars(subtotal));
     }
     
-    mockData(cart);
+    calculateCart(cart);
 
     function displayDollars(number){
         var dollars = number / 100; 
         return dollars.toLocaleString("en-US", {style:"currency", currency:"USD"});
     } 
 
-    
-    $("#cartSubtotal").text(`Subtotal:${displayDollars(subtotal)}`);
-    $("#cartTaxes").text(`Taxes:${displayDollars(subtotal*.05)}`);
-    $("#cartValue").text(`Total:${displayDollars(subtotal*1.05)}`);
-
-
-
+    */
 
 });

@@ -23,10 +23,27 @@
           <span class="cart-quantity cart-header cart-column">QUANTITY</span>
         </div>
 
+        <% orders.forEach((order)=> { %>
+          <div class="cart-items">
+            <div class="cart-row">
+                <div class="cart-item cart-column">
+                    <span class="cart-item-title"><%= order.itemName %></span>
+                </div>
+                <span class="cart-price cart-column"><%= order.price %></span>
+                <div class="cart-quantity cart-column">
+                    <input class="cart-quantity-input"  type="number" value=<%= order.Qty %>>
+                    <button class="btn btn-remove-data"  type="button">REMOVE</button>
+                </div>
+            </div>
+        </div>
+
+        <% }); %>
+        
       </section>
-        <span id ="cartSubtotal" class="classPrice">Subtotal:</span> <br>
-        <span id ="cartTaxes" class="classPrice">Taxes:</span> <br>
-        <span id ="cartValue" class="classPrice">Order total:</span> <br>
+        
+        <span id ="cartSubtotal" class="classPrice">Subtotal:<%= displayDollars(subtotal) %> </span> <br>
+        <span id ="cartTaxes" class="classPrice">Taxes:<%= displayDollars(subtotal * 0.05) %></span> <br>
+        <span id ="cartValue" class="classPrice">Order Total: <%= displayDollars(subtotal * 1.05) %></span> <br>
 
       <h3>Order Contact Information</h3>
       <setion>  
