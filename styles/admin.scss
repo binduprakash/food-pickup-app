@@ -62,23 +62,27 @@ body {
         .order_state{
           padding: 10px;
         }
-      }
 
-      .save_order{
-        background-color: green;
-        color:white;
-        padding: 10px;
-        border-radius: 4px;
-        margin-top: 50px;
-      }
+        #order_status_controls{
+          height:100px;
+        }
 
-      .go_back{
-        background-color: orange;
-        color: white;
-        padding: 10px;
-        border-radius: 4px;
-        margin-right: 10px;
-        margin-top: 50px;
+        #go_back_button{
+          display: block;
+          width: 100px;
+          text-decoration: none;
+          background-color: orange;
+          color: white;
+          padding: 10px;
+          border-radius: 4px;
+        }
+
+        .save_order{
+          background-color: green;
+          color:white;
+          padding: 10px;
+          border-radius: 4px;
+        }
       }
     }
 
