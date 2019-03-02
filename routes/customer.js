@@ -100,10 +100,12 @@ module.exports = function(knex) {
     let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
     //Admin Phone #
-    // let phoneNumber = "+17789274265";
-    // let stringMessage = "Naan Stop - you have a new order to verify";
+    let adminPhoneNumber = "+17788775276";
+    let stringMessage = "Naan Stop - you have a new order to verify";
 
-    // twilio.twilioTextMessage(stringMessage, phoneNumber);
+    //7788775276
+
+    twilio.twilioTextMessage(stringMessage, adminPhoneNumber);
     res.render("order_confirmation", templateVars);
   });
 
