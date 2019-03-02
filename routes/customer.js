@@ -85,7 +85,7 @@ module.exports = function(knex) {
   });
 
   // Order Complete - Thank You
-  customerRoutes.get("/order/complete", (req, res) => {
+    customerRoutes.get("/order/complete", (req, res) => {
     res.render("order_confirmation");
   });
   return customerRoutes;
