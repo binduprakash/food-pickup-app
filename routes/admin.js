@@ -8,7 +8,7 @@ module.exports = function(knex) {
   // Admin Orders JSON response
   adminRoutes.get("/orders_json", (req, res) => {
     knex
-      .select("orders.id", "order_status.name", "orders.created_at", "orders.customer_first_name")
+      .select("orders.id", "order_status.name", "orders.created_at", "orders.customer_first_name", "orders.customer_last_name")
       .from("orders")
       .innerJoin("order_status", "orders.status_id", "order_status.id")
       .then(results => {
@@ -53,21 +53,23 @@ module.exports = function(knex) {
   });
 
   adminRoutes.post("/order_edit", (req, res) => {
+    console.log(req.body);
     let new_status = req.body["order_status_select"];
     let order_id = req.body["order_id"];
     let pick_up_minutes = req.body["pick_up_select"];
+    let temp = req.body["phone"];
+    let phoneT = `+1${temp.substring(16)}`;
 
     knex("orders")
       .where({ id: order_id })
       .update({ status_id: new_status })
       .then(results => {
-        let phoneNumber = "+16046006082";
+        let phoneNumber = phoneT;
         let stringMessage = "";
-        if(new_status == 2){
-          stringMessage = `Thanks for ordering at Naan Stop. Your Order :${order_id} will be ready in ${pick_up_minutes} minutes.`;
-        }
-        else if(new_status == 4){
-          stringMessage = "Sorry we are unable to process your order at this moment";
+        if (new_status == 2) {
+          stringMessage = `Thanks for ordering at Naan Stop. Your Order (#${order_id}) will be ready in ${pick_up_minutes} minutes. Payment expected upon pickup.`;
+        } else if (new_status == 4) {
+          stringMessage = "Sorry we are unable to process your order at this moment. We are cancelling your order.";
         }
         twilio.twilioTextMessage(stringMessage, phoneNumber);
         res.json(results);

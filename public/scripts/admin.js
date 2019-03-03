@@ -21,8 +21,11 @@ function createOrderElement(order) {
   //<li><a href="/admin/orders">Order ID</a></li>
   let $liTag = $("<li>").addClass("li");
   let $aTag = $("<a>").attr("href", "/admin/order_edit/?order_id=" + order.id);
-  $aTag.text(order.id + " - " + order.customer_first_name);
+  $aTag.text("#" + order.id + " - " + order.customer_first_name + " " + order.customer_last_name);
+  // let $timeTag = $("<ul>").addClass("timeTag");
+  // $timeTag.text("Order placed at: " + orders.created_at);
   $liTag.append($aTag);
+  // $liTag.append($timeTag);
   return $liTag;
 }
 

@@ -1,19 +1,17 @@
 function loadOrder() {
-  $.ajax("/admin/orders_details_json/" + getUrlParameter("order_id"), {method: 'GET'})
-    .then(function(orderDetailsJson) {
-      console.log(orderDetailsJson)
-      renderOrderDetails(orderDetailsJson);
-    }
-  );
+  $.ajax("/admin/orders_details_json/" + getUrlParameter("order_id"), { method: "GET" }).then(function(orderDetailsJson) {
+    console.log(orderDetailsJson);
+    renderOrderDetails(orderDetailsJson);
+  });
 }
 
-function renderOrderDetails(order){
+function renderOrderDetails(order) {
   if (!order) {
     return;
   }
-  $("#customer_name").text("Customer Name: " + order[0].customer_first_name + " " + order[0].customer_last_name)
-  $("#customer_phone").text("Customer Phone: " + order[0].customer_phone_number)
-  order.forEach(function(menuItem, idx){
+  $("#customer_name").text("Customer Name: " + order[0].customer_first_name + " " + order[0].customer_last_name);
+  $("#customer_phone").text("Customer Phone: " + order[0].customer_phone_number);
+  order.forEach(function(menuItem, idx) {
     let $tr = $("<tr>");
     let $tdSlNo = $("<td>").addClass("sl_no");
     $tdSlNo.text((idx + 1).toString());
@@ -48,10 +46,10 @@ function renderOrderDetails(order){
 //parsing the url query parameter
 function getUrlParameter(sParam) {
   let sPageURL = window.location.search.substring(1);
-  let sURLVariables = sPageURL.split('&');
+  let sURLVariables = sPageURL.split("&");
   let sParameterName;
-  for(let i = 0; i < sURLVariables.length; i++) {
-    sParameterName = sURLVariables[i].split('=');
+  for (let i = 0; i < sURLVariables.length; i++) {
+    sParameterName = sURLVariables[i].split("=");
     if (sParameterName[0] === sParam) {
       return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
     }
@@ -60,23 +58,25 @@ function getUrlParameter(sParam) {
 
 $(document).ready(function() {
   $("form").on("submit", function(event) {
-
     // Prevents defaults
     event.preventDefault();
 
     $.ajax("/admin/order_edit", {
-      method: 'POST',
+      method: "POST",
       data: {
-        order_status_select:$("#order_status_select").children("option:selected").val(),
-        order_id:getUrlParameter("order_id"),
-        pick_up_select: $("#pick_up_select").children("option:selected").val(),
+        order_status_select: $("#order_status_select")
+          .children("option:selected")
+          .val(),
+        order_id: getUrlParameter("order_id"),
+        pick_up_select: $("#pick_up_select")
+          .children("option:selected")
+          .val(),
+        phone: $("#customer_phone").text()
       }
-    })
-      .then(function (response) {
-        alert("order status changed successfully");
-        window.location.replace("/admin/orders");
+    }).then(function(response) {
+      alert("Order status changed successfully");
+      window.location.replace("/admin/orders");
     });
   });
   loadOrder();
 });
-
