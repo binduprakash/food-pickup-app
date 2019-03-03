@@ -21,7 +21,7 @@
           <div class="confirmColumnHead">ITEM/QTY</div>
           <div class="confirmColumnHead">PRICE</div>
         </div>
-        
+
         <!-- for each to iterate over order and display items from index page -->
         <% orders.forEach((order)=> { %>
 
@@ -33,7 +33,7 @@
                 <input type="hidden" name="qty" value="<%= order.Qty %>" />
               </div>
               <div class="cart-item-price">
-                <span>$<%= (displayDollars(order.price)*order.Qty) %></span>
+                <span>$<%= displayDollars(order.price * order.Qty) %></span>
               </div>
           </div>
         <% }); %>

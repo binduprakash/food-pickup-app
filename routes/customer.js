@@ -23,7 +23,7 @@ function calculateCart(cartData) {
 }
 
 function displayDollars(number) {
-  var dollars = number;
+  var dollars = parseFloat(number).toFixed(2);
   return dollars.toLocaleString("en-US", { style: "currency", currency: "USD" });
 }
 
@@ -91,13 +91,16 @@ module.exports = function(knex) {
         var count = ids.length;
         for (var i = 0; i < count; i++) {
           console.log("hello", qtys[i]);
-          return knex("order_menu_items").insert({
-            order_id: id[i],
-            menu_items_id: parseInt(ids[i]),
-            quantity: parseInt(qtys[i])
-          });
+          knex("order_menu_items")
+            .insert({
+              order_id: parseInt(id),
+              menu_items_id: parseInt(ids[i]),
+              quantity: parseInt(qtys[i])
+            })
+            .then(() => {});
         }
       });
+
     let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
     // Admin Phone #
