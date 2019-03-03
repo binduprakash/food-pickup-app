@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/OrderConfirmation.css" type="text/css" />
+
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/formControl.js"></script>
@@ -16,7 +16,7 @@
     <h1>Order Confirmation</h1>
     <h3>Cart Details</h3>
     <form action="/confirmorder" method="POST">
-      <section class="container" id="cart-container">
+      <section class="container" id="menu_container">
         <div class="confirm_container">
           <span class="confirmColumn">ITEM</span>
           <span class="confirmColumn">PRICE</span>
@@ -50,18 +50,19 @@
       <h3>Order Contact Information</h3>
       <section>
         <div class="contactForm">
-          <label for="firstName">First Name:</label>
+          <label class="label" for="firstName">First Name:</label>
           <input id= "firstName" class="form-control" type="text" name="firstName" />
-          <label for="lastName">Last Name:</label>
+          <label class="label" for="lastName">Last Name:</label>
           <input id="lastName" class="form-control" type="text" name="lastName" />
 
           <br />
-          <label for="phoneNumber">Phone Number:</label>
-          <input id="phoneInput" class="form-control" type="text" name="phoneNumber" /><p class="phoneText">Number must be this format: 0123456789</p>
+          <label class="label" for="phoneNumber">Phone Number:</label>
+          <input class="label" id="phoneInput" class="form-control" type="text" name="phoneNumber" /><p class="phoneText">Number must be this format: 0123456789</p>
         <div>
           <input id="confirmOrder" class="submit" type="submit" value="Confirm Order" />
         </div></div>
       </section>
     </form>
+
   </body>
 </html>
