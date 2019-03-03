@@ -4,7 +4,7 @@
 $(() => {
 
     //disable button on load
-    //$('#confirmOrder').prop('disabled', true); 
+    $('#confirmOrder').prop('disabled', true); 
 
     let firstNameLength = 0;
     let lastNameLength = 0;

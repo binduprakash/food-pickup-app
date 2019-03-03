@@ -78,6 +78,10 @@ module.exports = function(knex) {
     var totalprice = parseFloat(req.body.totalprice);
     console.log(ids, qtys, totalprice);
 
+
+
+
+
     knex('orders').insert({
       status_id: 1,
       total_cost: totalprice,
@@ -89,9 +93,10 @@ module.exports = function(knex) {
       console.log("we are in here ");
       console.log(id);                                                                                                                                                                                                             
       var count = ids.length;
-      for(var i = 0; i<count; i++){
+      for(var i = 0; i < count; i++){
+        console.log("hello", qtys[i])
         return knex('order_menu_items').insert({
-          order_id: id[0],
+          order_id: id[i],
           menu_items_id: parseInt(ids[i]),
           quantity: parseInt(qtys[i])
         });
@@ -100,12 +105,12 @@ module.exports = function(knex) {
     let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
     //Admin Phone #
-    let adminPhoneNumber = "+17788775276";
-    let stringMessage = "Naan Stop - you have a new order to verify";
+    //let adminPhoneNumber = "+17788775276";
+    //let stringMessage = "Naan Stop - you have a new order to verify";
 
     //7788775276
 
-    twilio.twilioTextMessage(stringMessage, adminPhoneNumber);
+    //twilio.twilioTextMessage(stringMessage, adminPhoneNumber);
     res.render("order_confirmation", templateVars);
   });
 
