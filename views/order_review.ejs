@@ -28,24 +28,25 @@
           <div>
             <div class="cart-item-row">
               <div class="cart-item-name">
-                <span><%= order.itemName %> x <%= order.Qty %></span>
+                <span><%= order.itemName %> x <%= order.Qty %> @ $<%= order.price %> each =></span>
                 <input type="hidden" name="id" value="<%= order.itemID %>" />
                 <input type="hidden" name="qty" value="<%= order.Qty %>" />
               </div>
               <div class="cart-item-price">
-                <span>$<%= displayDollars(order.price) %></span>
+                <span>$<%= (displayDollars(order.price)*order.Qty) %></span>
               </div>
           </div>
         <% }); %>
       </section>
-
+<br />
         <section class = "costContainer">
-        <span id ="cartSubtotal" class="classPrice">Subtotal:<%= displayDollars(subtotal) %> </span> <br>
-        <span id ="cartTaxes" class="classPrice">Taxes:<%= displayDollars(subtotal * 0.05) %></span> <br>
-        <span id ="cartValue" class="classPrice">Order Total: <%= displayDollars(subtotal * 1.05) %></span> <br>
+        <span id ="cartSubtotal" class="classPrice">Subtotal: <%= displayDollars(subtotal) %> </span> <br />
+        <span id ="cartTaxes" class="classPrice">Taxes: <%= displayDollars(subtotal * 0.05) %></span> <br />
+        <span id ="cartValue" class="classPrice">Amount due: <%= displayDollars(subtotal * 1.05) %></span><br />
+        <span class= "costMessage"> Please pay upon pickup</span>
         <input type="hidden" id="totalprice" name="totalprice" value=<%= (subtotal * 1.05) %>>
       </section>
-      
+
       <h3>Order Contact Information</h3>
       <section>
         <div class="contactForm">

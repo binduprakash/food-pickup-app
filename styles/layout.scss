@@ -17,6 +17,7 @@ body {
     color: palegoldenrod;
     font-family: cursive;
     text-align: center;
+    text-decoration: underline;
   }
   .maincontainer {
     height: 350px;
@@ -133,6 +134,25 @@ body {
       padding: 5px;
     }
   }
+  .costContainer {
+    background-color: #bf5f33;
+    width: 25%;
+    margin: 0 auto;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 20px;
+    border-color: goldenrod;
+    padding-left: 3px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    .costMessage {
+      font-style: italic;
+      font-size: 0.75em;
+    }
+  }
+
   .contactForm {
     background-color: #bf5f33;
     width: 50%;
