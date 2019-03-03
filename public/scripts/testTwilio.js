@@ -8,13 +8,16 @@ var authToken = secrets.twilioAuthToken;   // Your Auth Token from www.twilio.co
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
 
+let stringMsg = "Hello World"
 
-exports.twilioTextMessage = function(stringMsg, phone) {
+twilioTextMessage = function(stringMsg, phone) {
     
     client.messages.create({
         body: stringMsg,
-        to: phone,  // Text this number
+        to: '+17789274265',  // Text this number
         from: secrets.twilioFrom // From a valid Twilio number
     })
     .then((message) => console.log(message.sid, phone, stringMsg));
 }
+
+twilioTextMessage(stringMsg, 8)

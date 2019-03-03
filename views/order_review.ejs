@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Naan Stop! Order Review</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <!--<link rel="stylesheet" href="/styles/OrderConfirmation.css" type="text/css" />-->
+    <link rel="stylesheet" href="/styles/OrderConfirmation.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/orderConfirmation.js"></script>
+    <script type="text/javascript" src="/scripts/formControl.js"></script>
   </head>
 
   <body>
@@ -17,51 +17,50 @@
     <h3>Cart Details</h3>
     <form action="/confirmorder" method="POST">
       <section class="container" id="cart-container">
-        <div class="menu_container">
+        <div class="confirm_container">
           <span class="confirmColumn">ITEM</span>
           <span class="confirmColumn">PRICE</span>
           <span class="confirmColumn">QUANTITY</span>
         </div>
-
+        
+        <!-- for each to iterate over order and display items from index page -->
         <% orders.forEach((order)=> { %>
-        <div class="cart-items">
-          <div class="cart-row">
-            <div class="cart-item cart-column">
-              <span class="cart-item-title"><%= order.itemName %></span>
-            </div>
-            <span class="cart-price cart-column"><%= order.price %></span>
-            <div class="cart-quantity cart-column">
-              <input class="cart-quantity-input" type="number" value=<%= order.Qty %>>
-              <button class="btn btn-remove-data" type="button">REMOVE</button>
+
+          <div class="cart-items">
+            <div class="cart-row">
+              <div class="cart-item cart-column">
+                <span class="cart-item-title"><%= order.itemName %></span>
+              </div>
+                <span class="cart-price cart-column"><%= displayDollars(order.price) %></span>
+              <div class="cart-quantity cart-column">
+                    <input type="hidden" name="id" value="<%= order.itemID %>" />
+                    <span class="cart-quantity-input"  type="text" /><%= order.Qty %></span>
+                    <input type="hidden" name="qty" value="<%= order.Qty %>" />
             </div>
           </div>
-        </div>
-
         <% }); %>
+    
       </section>
-
-      <span id="cartSubtotal" class="classPrice">Subtotal:<%= displayDollars(subtotal) %> </span> <br />
-      <span id="cartTaxes" class="classPrice">Taxes:<%= displayDollars(subtotal * 0.05) %></span> <br />
-      <span id="cartValue" class="classPrice">Order Total: <%= displayDollars(subtotal * 1.05) %></span> <br />
+        
+        <span id ="cartSubtotal" class="classPrice">Subtotal:<%= displayDollars(subtotal) %> </span> <br>
+        <span id ="cartTaxes" class="classPrice">Taxes:<%= displayDollars(subtotal * 0.05) %></span> <br>
+        <span id ="cartValue" class="classPrice">Order Total: <%= displayDollars(subtotal * 1.05) %></span> <br>
+        <input type="hidden" id="totalprice" name="totalprice" value=<%= (subtotal * 1.05) %>>
 
       <h3>Order Contact Information</h3>
       <section>
-        <div class="form-group mb-2">
-          <label for="email">First Name:</label>
-          <input class="form-control" type="text" name="firstName" style="width: 150px; margin: 1em" />
-          <label for="email">Last Name:</label>
-          <input class="form-control" type="text" name="lastName" style="width: 150px; margin: 1em" />
+        <div class="contactForm">
+          <label for="firstName">First Name:</label>
+          <input id= "firstName" class="form-control" type="text" name="firstName" />
+          <label for="lastName">Last Name:</label>
+          <input id="lastName" class="form-control" type="text" name="lastName" />
 
           <br />
           <label for="phoneNumber">Phone Number:</label>
-          <input class="form-control" type="text" name="phoneNumber" style="width: 150px; margin: 1em" />
-        </div>
-
+          <input id="phoneInput" class="form-control" type="text" name="phoneNumber" /><p class="phoneText">Number must be this format: 0123456789</p>
         <div>
-          <p></p>
-        </div>
-
-        <button class="btn orderConfirm" type="submit">Confirm Order</button>
+          <input id="confirmOrder" class="submit" type="submit" value="Confirm Order" />
+        </div></div>
       </section>
     </form>
   </body>

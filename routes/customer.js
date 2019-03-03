@@ -5,13 +5,16 @@ const customerRoutes = express.Router();
 const bodyParser = require("body-parser");
 const twilio = require("../public/scripts/twilio.js");
 
+//--------Functions--------------------->
+
 function itemRowCost(itemRow) {
+  //calculates cost of each item in cart for order review page
   let itemCost = itemRow.Qty * itemRow.price;
   return itemCost;
 }
 
 function calculateCart(cartData) {
-  console.log("-------", cartData);
+  //calculates total cost of cart for order review page
   let subtotal = 0;
   for (let i = 0; i < cartData.length; i++) {
     subtotal += itemRowCost(cartData[i]);
@@ -23,6 +26,8 @@ function displayDollars(number) {
   var dollars = number;
   return dollars.toLocaleString("en-US", { style: "currency", currency: "USD" });
 }
+
+//-------customer routes---------------->
 
 module.exports = function(knex) {
   // Home page
@@ -48,11 +53,8 @@ module.exports = function(knex) {
             });
           }
         });
-        //console.log(orderForm);
 
         let subtotal = calculateCart(orderForm);
-        console.log(subtotal);
-
         let templateVars = { orders: orderForm, subtotal: subtotal, displayDollars: displayDollars };
         res.render("order_review", templateVars);
       });
@@ -66,13 +68,43 @@ module.exports = function(knex) {
   });
 
   customerRoutes.post("/confirmorder", (req, res) => {
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var phoneNumber = req.body.phoneNumber;
+    var ids = req.body.id;
+    var qtys = req.body.qty;
+    var totalprice = parseFloat(req.body.totalprice);
+    console.log(ids, qtys, totalprice);
+
+    knex("orders")
+      .insert({
+        status_id: 1,
+        total_cost: totalprice,
+        customer_first_name: firstName,
+        customer_last_name: lastName,
+        customer_phone_number: phoneNumber
+      })
+      .returning("id")
+      .then(id => {
+        console.log("we are in here ");
+        console.log(id);
+        var count = ids.length;
+        for (var i = 0; i < count; i++) {
+          console.log("hello", qtys[i]);
+          return knex("order_menu_items").insert({
+            order_id: id[i],
+            menu_items_id: parseInt(ids[i]),
+            quantity: parseInt(qtys[i])
+          });
+        }
+      });
     let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
     // Admin Phone #
-    let phoneNumber = "+17788775276";
+    let adminPhoneNumber = "+17788775276";
     let stringMessage = "Naan Stop - you have a new order to verify";
 
-    twilio.twilioTextMessage(stringMessage, phoneNumber);
+    twilio.twilioTextMessage(stringMessage, adminPhoneNumber);
     res.render("order_confirmation", templateVars);
   });
 
@@ -82,5 +114,3 @@ module.exports = function(knex) {
   });
   return customerRoutes;
 };
-
-//--------------------------------

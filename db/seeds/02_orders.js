@@ -4,10 +4,9 @@ exports.seed = function(knex, Promise) {
     .then(function() {
       return knex.raw("ALTER SEQUENCE IF EXISTS order_status_id_seq RESTART 1").then(function() {
         return Promise.all([
-          knex("order_status").insert({ id:1, name: "new" }),
-          knex("order_status").insert({ id:2, name: "in_progress" }),
-          knex("order_status").insert({ id:3, name: "completed" }),
-          knex("order_status").insert({ id:4, name: "pending" })
+          knex("order_status").insert({ id: 1, name: "new" }),
+          knex("order_status").insert({ id: 2, name: "in_progress" }),
+          knex("order_status").insert({ id: 3, name: "completed" })
         ]).then(function() {
           return knex("order_menu_items")
             .del()
@@ -22,63 +21,63 @@ exports.seed = function(knex, Promise) {
                         total_cost: 97.0,
                         customer_first_name: "Bindu",
                         customer_last_name: "Prakash",
-                        customer_phone_number: "987654321"
+                        customer_phone_number: "+16046006082"
                       }),
                       knex("orders").insert({
                         status_id: 1,
                         total_cost: 63.45,
                         customer_first_name: "John",
                         customer_last_name: "Connolly",
-                        customer_phone_number: "123456789"
+                        customer_phone_number: "+17788775276"
                       }),
                       knex("orders").insert({
                         status_id: 1,
                         total_cost: 10.3,
                         customer_first_name: "Tyler",
                         customer_last_name: "Tomczyk",
-                        customer_phone_number: "129834765"
+                        customer_phone_number: "+17789274265"
                       }),
                       knex("orders").insert({
                         status_id: 2,
                         total_cost: 75.5,
                         customer_first_name: "John",
                         customer_last_name: "Connolly",
-                        customer_phone_number: "123456789"
+                        customer_phone_number: "+17788775276"
                       }),
                       knex("orders").insert({
                         status_id: 2,
                         total_cost: 87.0,
                         customer_first_name: "Tyler",
                         customer_last_name: "Tomczyk",
-                        customer_phone_number: "129834765"
+                        customer_phone_number: "+17789274265"
                       }),
                       knex("orders").insert({
                         status_id: 2,
                         total_cost: 76.0,
                         customer_first_name: "Bindu",
                         customer_last_name: "Prakash",
-                        customer_phone_number: "987654321"
+                        customer_phone_number: "+16046006082"
                       }),
                       knex("orders").insert({
                         status_id: 3,
                         total_cost: 87.55,
                         customer_first_name: "Tyler",
                         customer_last_name: "Tomczyk",
-                        customer_phone_number: "129834765"
+                        customer_phone_number: "+17789274265"
                       }),
                       knex("orders").insert({
                         status_id: 3,
                         total_cost: 19.95,
                         customer_first_name: "Bindu",
                         customer_last_name: "Prakash",
-                        customer_phone_number: "987654321"
+                        customer_phone_number: "+16046006082"
                       }),
                       knex("orders").insert({
                         status_id: 3,
                         total_cost: 47.8,
                         customer_first_name: "John",
                         customer_last_name: "Connolly",
-                        customer_phone_number: "123456789"
+                        customer_phone_number: "+17788775276"
                       })
                     ]).then(function() {
                       return Promise.all([
