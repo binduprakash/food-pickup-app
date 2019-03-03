@@ -5,8 +5,17 @@ function loadOrders() {
 }
 
 function renderOrders(orders) {
+  orders.forEach(function() {
+    orders.sort(function(a, b) {
+      if (a.created_at < b.created_at) {
+        return 1;
+      }
+      if (a.created_at > b.created_at) {
+        return -1;
+      }
+    });
+  });
   orders.forEach(function(order) {
-    console.log("order ******", order);
     var $order = createOrderElement(order);
     if (order.name == "new") {
       $("#new_orders ul.order_type").append($order);
@@ -19,14 +28,10 @@ function renderOrders(orders) {
 }
 
 function createOrderElement(order) {
-  //<li><a href="/admin/orders">Order ID</a></li>
   let $liTag = $("<li>").addClass("li");
   let $aTag = $("<a>").attr("href", "/admin/order_edit/?order_id=" + order.id);
   $aTag.text("#" + order.id + " - " + order.customer_first_name + " " + order.customer_last_name);
-  // let $timeTag = $("<ul>").addClass("timeTag");
-  // $timeTag.text("Order placed at: " + orders.created_at);
   $liTag.append($aTag);
-  // $liTag.append($timeTag);
   return $liTag;
 }
 

@@ -9,8 +9,9 @@ function renderOrderDetails(order) {
   if (!order) {
     return;
   }
+  $("#customer_order_id").text("Order ID: " + order[0].id);
   $("#customer_name").text("Customer Name: " + order[0].customer_first_name + " " + order[0].customer_last_name);
-  $("#customer_phone").text("Customer Phone: " + order[0].customer_phone_number);
+  $("#customer_phone").text("Phone Number: " + order[0].customer_phone_number);
   order.forEach(function(menuItem, idx) {
     let $tr = $("<tr>");
     let $tdSlNo = $("<td>").addClass("sl_no");
