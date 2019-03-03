@@ -49,9 +49,8 @@
                 <span class="cart-price cart-column"><%= displayDollars(order.price) %></span>
               <div class="cart-quantity cart-column">
                     <input type="hidden" name="id" value="<%= order.itemID %>" />
-                    <input class="cart-quantity-input"  type="text" value='<%= order.Qty %>' name="qty"/>
-                    <button class="btn btn-remove-data"  type="button">REMOVE</button>
-              </div>
+                    <span class="cart-quantity-input"  type="text" /><%= order.Qty %></span>
+                    <input type="hidden" name="qty" value="<%= order.Qty %>" />
             </div>
           </div>
         <% }); %>
