@@ -33,6 +33,7 @@ module.exports = function(knex) {
       )
       .from("orders")
       .where({ "orders.id": req.params.orderID })
+      .orderBy("orders.created_at", "desc")
       .innerJoin("order_status", "orders.status_id", "order_status.id")
       .innerJoin("order_menu_items", "orders.id", "order_menu_items.order_id")
       .innerJoin("menu_items", "order_menu_items.menu_items_id", "menu_items.id")
