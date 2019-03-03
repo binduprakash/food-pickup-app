@@ -16,27 +16,25 @@
     <h1>Order Confirmation</h1>
     <h3>Cart Details</h3>
     <form action="/confirmorder" method="POST">
-      <section class="cartcontainer" id="menu_container">
+      <section class="cartContainer" id="menu_container">
         <div class="confirm_container">
-          <span class="confirmColumn">ITEM</span>
-          <span class="confirmColumn">PRICE</span>
-          <span class="confirmColumn">QUANTITY</span>
+          <div class="confirmColumnHead">ITEM/QTY</div>
+          <div class="confirmColumnHead">PRICE</div>
         </div>
         
         <!-- for each to iterate over order and display items from index page -->
         <% orders.forEach((order)=> { %>
 
-          <div class="cart-items">
-            <div class="cart-row">
-              <div class="cart-item cart-column">
-                <span class="cart-item-title"><%= order.itemName %></span>
+          <div>
+            <div class="cart-item-row">
+              <div class="cart-item-name">
+                <span><%= order.itemName %> x <%= order.Qty %></span>
+                <input type="hidden" name="id" value="<%= order.itemID %>" />
+                <input type="hidden" name="qty" value="<%= order.Qty %>" />
               </div>
-                <span class="cart-price cart-column"><%= displayDollars(order.price) %></span>
-              <div class="cart-quantity cart-column">
-                    <input type="hidden" name="id" value="<%= order.itemID %>" />
-                    <span class="cart-quantity-input"  type="text" /><%= order.Qty %></span>
-                    <input type="hidden" name="qty" value="<%= order.Qty %>" />
-            </div>
+              <div class="cart-item-price">
+                <span>$<%= displayDollars(order.price) %></span>
+              </div>
           </div>
         <% }); %>
       </section>
@@ -47,6 +45,7 @@
         <span id ="cartValue" class="classPrice">Order Total: <%= displayDollars(subtotal * 1.05) %></span> <br>
         <input type="hidden" id="totalprice" name="totalprice" value=<%= (subtotal * 1.05) %>>
       </section>
+      
       <h3>Order Contact Information</h3>
       <section>
         <div class="contactForm">
@@ -63,12 +62,5 @@
         </div></div>
       </section>
     </form>
-    <div class="footerContainer">
-        <footer class="footer mt-auto py-3">
-          <div class="container">
-            <span class="text-muted">Naan Stop! Vancouver BC 123 Fake St. V5X 2D6</span>
-          </div>
-        </footer>
-      </div>
   </body>
 </html>
