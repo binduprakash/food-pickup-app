@@ -6,6 +6,7 @@ function loadOrders() {
 
 function renderOrders(orders) {
   orders.forEach(function(order) {
+    console.log("order ******", order);
     var $order = createOrderElement(order);
     if (order.name == "new") {
       $("#new_orders ul.order_type").append($order);
