@@ -61,8 +61,13 @@ module.exports = function(knex) {
       .update({ status_id: new_status })
       .then(results => {
         let phoneNumber = "+16046006082";
-        let stringMessage = `Thanks for ordering at Naan Stop. Your Order :${order_id}
-         will be ready in ${pick_up_minutes} minutes.`;
+        let stringMessage = "";
+        if(new_status == 2){
+          stringMessage = `Thanks for ordering at Naan Stop. Your Order :${order_id} will be ready in ${pick_up_minutes} minutes.`;
+        }
+        else if(new_status == 4){
+          stringMessage = "Sorry we are unable to process your order at this moment";
+        }
         twilio.twilioTextMessage(stringMessage, phoneNumber);
         res.json(results);
       });

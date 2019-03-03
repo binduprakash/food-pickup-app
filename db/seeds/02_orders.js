@@ -6,7 +6,8 @@ exports.seed = function(knex, Promise) {
         return Promise.all([
           knex("order_status").insert({ id: 1, name: "new" }),
           knex("order_status").insert({ id: 2, name: "in_progress" }),
-          knex("order_status").insert({ id: 3, name: "completed" })
+          knex("order_status").insert({ id: 3, name: "completed" }),
+          knex("order_status").insert({ id: 4, name: "deleted"})
         ]).then(function() {
           return knex("order_menu_items")
             .del()
