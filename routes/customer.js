@@ -76,7 +76,6 @@ module.exports = function(knex) {
     var totalprice = parseFloat(req.body.totalprice);
     console.log(ids, qtys, totalprice);
 
-<<<<<<< HEAD
 
 
 
@@ -101,28 +100,6 @@ module.exports = function(knex) {
         });
       }
     });
-=======
-    knex("orders")
-      .insert({
-        status_id: 1,
-        total_cost: totalprice,
-        customer_first_name: firstName,
-        customer_last_name: lastName,
-        customer_phone_number: phoneNumber
-      })
-      .returning("id")
-      .then(id => {
-        var count = ids.length;
-        console.log("count is *******", count);
-        for (var i = 0; i < count; i++) {
-          return knex("order_menu_items").insert({
-            order_id: id[0],
-            menu_items_id: parseInt(ids[i]),
-            quantity: parseInt(qtys[i])
-          });
-        }
-      });
->>>>>>> changeqty
     let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
     //Admin Phone #
