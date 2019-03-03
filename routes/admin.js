@@ -53,12 +53,12 @@ module.exports = function(knex) {
   });
 
   adminRoutes.post("/order_edit", (req, res) => {
-    console.log(req.body);
     let new_status = req.body["order_status_select"];
     let order_id = req.body["order_id"];
     let pick_up_minutes = req.body["pick_up_select"];
     let temp = req.body["phone"];
-    let phoneT = `+1${temp.substring(16)}`;
+    let phoneT = `+1${temp.substring(14)}`;
+    console.log("PHONET *******", phoneT);
 
     knex("orders")
       .where({ id: order_id })
@@ -71,7 +71,7 @@ module.exports = function(knex) {
         } else if (new_status == 4) {
           stringMessage = "Sorry we are unable to process your order at this moment. We are cancelling your order.";
         }
-        twilio.twilioTextMessage(stringMessage, phoneNumber);
+        twilio.twilioTextMessage(stringMessage, phoneT);
         res.json(results);
       });
     //res.render("admin_order_edit");
