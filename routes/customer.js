@@ -22,6 +22,7 @@ function calculateCart(cartData) {
   return subtotal;
 }
 
+//renders number in currency format
 function displayDollars(number) {
   var dollars = parseFloat(number).toFixed(2);
   return dollars.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -36,6 +37,8 @@ module.exports = function(knex) {
   });
 
   customerRoutes.post("/revieworder", (req, res) => {
+    
+    //passes on data for each menu item with qty> 1 for templateVars
     let menuItems;
     knex
       .select("*")
@@ -74,8 +77,8 @@ module.exports = function(knex) {
     var ids = req.body.id;
     var qtys = req.body.qty;
     var totalprice = parseFloat(req.body.totalprice);
-    console.log(ids, qtys, totalprice);
 
+    //pushing order into database 
     knex("orders")
       .insert({
         status_id: 1,
@@ -86,11 +89,8 @@ module.exports = function(knex) {
       })
       .returning("id")
       .then(id => {
-        console.log("we are in here ");
-        console.log(id);
         var count = ids.length;
         for (var i = 0; i < count; i++) {
-          console.log("hello", qtys[i]);
           knex("order_menu_items")
             .insert({
               order_id: parseInt(id),
@@ -103,11 +103,11 @@ module.exports = function(knex) {
 
     let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
-    // Admin Phone #
+    // Text Admin Phone #
     let adminPhoneNumber = "+17788775276";
     let stringMessage = "Naan Stop - you have a new order to verify";
-
     twilio.twilioTextMessage(stringMessage, adminPhoneNumber);
+    
     res.render("order_confirmation", templateVars);
   });
 
