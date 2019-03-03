@@ -10,7 +10,7 @@ body {
       color: #faf0e6;
 
       .customer_details {
-        width: 60%;
+        width: 100%;
         margin: 0 auto;
         text-align: left;
 
@@ -105,6 +105,8 @@ body {
       border-color: white;
       border-style: solid;
       border-radius: 10px;
+      max-height: 150px;
+      overflow-y: auto;
 
       .order_type {
         color: palegoldenrod;
