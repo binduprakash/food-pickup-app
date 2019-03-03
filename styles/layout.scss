@@ -8,22 +8,17 @@ html {
 body {
   background-color: transparent;
   h1 {
-    margin-left: 25%;
-    margin-right: 25%;
     color: palegoldenrod;
     font-family: cursive;
     text-align: center;
-    font-size: 64px;
     font-weight: bold;
   }
   h3 {
-    margin-left: 25%;
-    margin-right: 25%;
     color: palegoldenrod;
     font-family: cursive;
     text-align: center;
   }
-  .container {
+  .maincontainer {
     height: 350px;
     display: flex;
     align-items: center;
@@ -152,6 +147,20 @@ body {
     }
     .label {
       align-items: left;
+    }
+  }
+}
+.footerContainer {
+  text-align: center;
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 50%;
+    margin-left: 25%;
+    height: 60px;
+    background-image: linear-gradient(to right, transparent, #af1d1d, transparent);
+    .text-muted {
+      text-align: center;
     }
   }
 }

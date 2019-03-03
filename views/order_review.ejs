@@ -16,7 +16,7 @@
     <h1>Order Confirmation</h1>
     <h3>Cart Details</h3>
     <form action="/confirmorder" method="POST">
-      <section class="container" id="menu_container">
+      <section class="cartcontainer" id="menu_container">
         <div class="confirm_container">
           <span class="confirmColumn">ITEM</span>
           <span class="confirmColumn">PRICE</span>
@@ -39,14 +39,14 @@
             </div>
           </div>
         <% }); %>
-    
       </section>
-        
+
+        <section class = "costContainer">
         <span id ="cartSubtotal" class="classPrice">Subtotal:<%= displayDollars(subtotal) %> </span> <br>
         <span id ="cartTaxes" class="classPrice">Taxes:<%= displayDollars(subtotal * 0.05) %></span> <br>
         <span id ="cartValue" class="classPrice">Order Total: <%= displayDollars(subtotal * 1.05) %></span> <br>
         <input type="hidden" id="totalprice" name="totalprice" value=<%= (subtotal * 1.05) %>>
-
+      </section>
       <h3>Order Contact Information</h3>
       <section>
         <div class="contactForm">
