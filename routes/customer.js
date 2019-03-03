@@ -7,25 +7,25 @@ const twilio = require("../public/scripts/twilio.js");
 
 //--------Functions--------------------->
 
-function itemRowCost (itemRow) {
-    //calculates cost of each item in cart for order review page
-    let itemCost = itemRow.Qty * itemRow.price;
-    return itemCost;
-};
+function itemRowCost(itemRow) {
+  //calculates cost of each item in cart for order review page
+  let itemCost = itemRow.Qty * itemRow.price;
+  return itemCost;
+}
 
-function calculateCart(cartData){
+function calculateCart(cartData) {
   //calculates total cost of cart for order review page
   let subtotal = 0;
   for (let i = 0; i < cartData.length; i++) {
-        subtotal += itemRowCost(cartData[i])
-    }
-    return subtotal;
-};
+    subtotal += itemRowCost(cartData[i]);
+  }
+  return subtotal;
+}
 
-function displayDollars(number){
-    var dollars = number; 
-    return dollars.toLocaleString("en-US", {style:"currency", currency:"USD"});
-};
+function displayDollars(number) {
+  var dollars = number;
+  return dollars.toLocaleString("en-US", { style: "currency", currency: "USD" });
+}
 
 //-------customer routes---------------->
 
@@ -55,7 +55,7 @@ module.exports = function(knex) {
         });
 
         let subtotal = calculateCart(orderForm);
-        let templateVars = {orders: orderForm, subtotal: subtotal, displayDollars: displayDollars};
+        let templateVars = { orders: orderForm, subtotal: subtotal, displayDollars: displayDollars };
         res.render("order_review", templateVars);
       });
   });
@@ -64,12 +64,10 @@ module.exports = function(knex) {
     res.redirect("/");
   });
   customerRoutes.get("/confirmorder", (req, res) => {
-   
     res.redirect("/");
   });
 
   customerRoutes.post("/confirmorder", (req, res) => {
-
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var phoneNumber = req.body.phoneNumber;
@@ -78,6 +76,7 @@ module.exports = function(knex) {
     var totalprice = parseFloat(req.body.totalprice);
     console.log(ids, qtys, totalprice);
 
+<<<<<<< HEAD
 
 
 
@@ -102,6 +101,28 @@ module.exports = function(knex) {
         });
       }
     });
+=======
+    knex("orders")
+      .insert({
+        status_id: 1,
+        total_cost: totalprice,
+        customer_first_name: firstName,
+        customer_last_name: lastName,
+        customer_phone_number: phoneNumber
+      })
+      .returning("id")
+      .then(id => {
+        var count = ids.length;
+        console.log("count is *******", count);
+        for (var i = 0; i < count; i++) {
+          return knex("order_menu_items").insert({
+            order_id: id[0],
+            menu_items_id: parseInt(ids[i]),
+            quantity: parseInt(qtys[i])
+          });
+        }
+      });
+>>>>>>> changeqty
     let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
     //Admin Phone #
@@ -115,9 +136,8 @@ module.exports = function(knex) {
   });
 
   // Order Complete - Thank You
-    customerRoutes.get("/order/complete", (req, res) => {
+  customerRoutes.get("/order/complete", (req, res) => {
     res.render("order_confirmation");
   });
   return customerRoutes;
 };
-
