@@ -23,7 +23,7 @@ function calculateCart(cartData) {
 }
 
 function displayDollars(number) {
-  var dollars = number;
+  var dollars = parseFloat(number).toFixed(2);
   return dollars.toLocaleString("en-US", { style: "currency", currency: "USD" });
 }
 
