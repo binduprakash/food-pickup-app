@@ -11,21 +11,21 @@ $(() => {
 
     $("#firstName").keyup(function() {
         firstNameLength = $('#firstName').val().length;
-        submitStatus()
+        submitStatus();
     })
 
     $("#lastName").keyup(function() {
         lastNameLength = $('#lastName').val().length;
-        submitStatus()
-    })
+        submitStatus();
+    });
 
     $("#phoneInput").keyup(function() {
         phoneInputLength = $('#phoneInput').val().length;
-        let serializePhone = $("#phoneInput").serialize()
-        phoneInputContents = serializePhone.slice(12)
-        parsedPhoneInputContents = parseInt(phoneInputContents, 10)
-        submitStatus()
-    })
+        let serializePhone = $("#phoneInput").serialize();
+        phoneInputContents = serializePhone.slice(12);
+        parsedPhoneInputContents = parseInt(phoneInputContents, 10);
+        submitStatus();
+    });
 
     //test conditions of length > 0, or 10 digits for phone to see whether to enable button for submit
     let submitStatus = function () {
@@ -34,7 +34,5 @@ $(() => {
         } else {
             $('#confirmOrder').prop('disabled', true);
         }
-    }
-
-
+    };
 });

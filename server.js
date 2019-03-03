@@ -14,15 +14,6 @@ const knex = require("knex")(knexConfig[ENV]);
 const morgan = require("morgan");
 const knexLogger = require("knex-logger");
 
-const cookieSession = require("cookie-session");
-
-app.use(
-  cookieSession({
-    name: "session",
-    keys: ["1", "2"],
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
-  })
-);
 
 // Seperated Routes for each Resource
 const itemRoutes = require("./routes/menu_items");
