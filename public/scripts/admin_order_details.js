@@ -44,9 +44,10 @@ function renderOrderDetails(order) {
   let $tdTax = $("<td>");
   $tdTax.text("Taxes");
   let $tdCurrency = $("<td>").addClass("currency");
-  $tdCurrency.text("$" + (order[0].total_cost * 0.05).toFixed(2));
+  $tdCurrency.text("$" + (order[0].total_cost / 1.05 * 0.05).toFixed(2));
   $tr.append([$tdEmpty, $tdTax, $tdCurrency]);
   $("#menu_table").append($tr);
+
 
   // Adding Total TR
   let $trTotalRow = $("<tr>");
