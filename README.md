@@ -58,10 +58,7 @@ Our customer is trying to be sneaky! Since numerical values are allowed in the f
 Here the customer can review their order. If they are satisfied with the order, they can submit it to the restaurant. They will provide their first and last name as well as their phone number so that they can be texted with updates.
 
 ![Order Confirmed! Upon submission of the order, the customer will be sent to this page.](https://github.com/new-dart/food-pickup-app/blob/master/docs/Naan%20Stop%20Order%20Confirmed%20Page.png?raw=true)
-Order Confirmed! Upon submission of the order, the customer will be sent to this page as well as receive a text from the restaurant.
-
-![Order Confirmation Text](https://github.com/new-dart/food-pickup-app/blob/master/docs/Naan%20Stop!%20Customer%20Order%20Confirmation%20Text.png?raw=true)
-Order Confirmation Text
+Order Confirmed! Upon submission of the order, the customer will be sent to this page confirming the order.
 
 ![New Order! The Restaurant Admin receives a text informing them that they have a new and unconfirmed order. They will go to the Admin Page on their computer to see the latest order they have to handle.](https://github.com/new-dart/food-pickup-app/blob/master/docs/Naan%20Stop!%20New%20Order%20Text.png?raw=true)
 New Order! The Restaurant Admin receives a text informing them that they have a new and unconfirmed order. They will go to the Admin Page on their computer to see the latest order they have to handle.
@@ -71,6 +68,9 @@ The admininstrative side of the restaurant will see a few tables with all their 
 
 ![Order Details: The restaurant can look at individual orders. All their relevant contact info is displayed, as well as a detailed list of their order. They restaurant can choose how long the order will take to be prepared, and alter its current status (Unconfirmed, In Progress, Completed, and Cancel). Giving the order a new status will send a text to the customer telling them how long it will take, or if it has been cancelled.](https://github.com/new-dart/food-pickup-app/blob/master/docs/Naan%20Stop%20Order%20Details%20Page.png?raw=true)
 The restaurant can look at individual orders. All their relevant contact info is displayed, as well as a detailed list of their order. They restaurant can choose how long the order will take to be prepared, and alter its current status (Unconfirmed, In Progress, Completed, and Cancel). Giving the order a new status will send a text to the customer telling them how long it will take, or if it has been cancelled.
+
+![Order Confirmation Text](https://github.com/new-dart/food-pickup-app/blob/master/docs/Naan%20Stop!%20Customer%20Order%20Confirmation%20Text.png?raw=true)
+Order Confirmation Text
 
 ![Order Status Changed: When an order's status is altered, it moves into its associated table. (Bob's Order was just confirmed by the restaurant, so now it's In Progress).](https://github.com/new-dart/food-pickup-app/blob/master/docs/Naan%20Stop%20Order%20Status%20Changed.png?raw=true)
 When an order's status is altered, it moves into its associated table. (Bob's Order was just confirmed by the restaurant, so now it's In Progress).
