@@ -63,18 +63,18 @@ module.exports = function(knex) {
     let order_id = req.body["order_id"];
     let pick_up_minutes = req.body["pick_up_select"];
     let temp = req.body["phone"];
-    let phoneT = `+1${temp.substring(14)}`;
+    let phoneWithCode = `+1${temp.substring(14)}`;
     knex("orders")
       .where({ id: order_id })
       .update({ status_id: new_status })
       .then(results => {
         let stringMessage = "";
-        if (new_status == 2) {
+        if (new_status === "2") {
           stringMessage = `Thanks for ordering at Naan Stop. Your Order (#${order_id}) will be ready in ${pick_up_minutes} minutes. Payment expected upon pickup.`;
-        } else if (new_status == 4) {
+        } else if (new_status === "4") {
           stringMessage = "Sorry we are unable to process your order at this moment. We are cancelling your order.";
         }
-        twilio.twilioTextMessage(stringMessage, phoneT);
+        twilio.twilioTextMessage(stringMessage, phoneWithCode);
         res.json(results);
       });
   });
