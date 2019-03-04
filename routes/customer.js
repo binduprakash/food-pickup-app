@@ -104,7 +104,7 @@ module.exports = function(knex) {
     let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
     // Text Admin Phone #
-    let adminPhoneNumber = "+16046006082";
+    let adminPhoneNumber = "+12345678910";
     let stringMessage = "Naan Stop - you have a new order to verify";
     twilio.twilioTextMessage(stringMessage, adminPhoneNumber);
 
