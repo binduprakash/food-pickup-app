@@ -1,3 +1,6 @@
+/*
+  Function to load single order by making GET API call to server
+*/
 function loadOrder() {
   $.ajax("/admin/orders_details_json/" + getUrlParameter("order_id"), { method: "GET" }).then(function(orderDetailsJson) {
     console.log(orderDetailsJson);
@@ -5,13 +8,22 @@ function loadOrder() {
   });
 }
 
+/*
+  Function to construct the html containing all the order and menu items details.
+*/
 function renderOrderDetails(order) {
+
+  // if no order returned from DB then return null
   if (!order) {
     return;
   }
+
+  // Adding customer details
   $("#customer_order_id").text("Order ID: " + order[0].id);
   $("#customer_name").text("Customer Name: " + order[0].customer_first_name + " " + order[0].customer_last_name);
   $("#customer_phone").text("Phone Number: " + order[0].customer_phone_number);
+
+  // Adding TR per menu item for this order
   order.forEach(function(menuItem, idx) {
     let $tr = $("<tr>");
     let $tdSlNo = $("<td>").addClass("sl_no");
@@ -25,6 +37,8 @@ function renderOrderDetails(order) {
     $tr.append([$tdSlNo, $tdMenuName, $tdQuanity, $tdCurrency]);
     $("#menu_table").append($tr);
   });
+
+  // Adding Tax TR
   let $tr = $("<tr>");
   let $tdEmpty = $("<td>").attr("colspan", "2");
   let $tdTax = $("<td>");
@@ -33,6 +47,8 @@ function renderOrderDetails(order) {
   $tdCurrency.text("$" + (order[0].total_cost * 0.05).toFixed(2));
   $tr.append([$tdEmpty, $tdTax, $tdCurrency]);
   $("#menu_table").append($tr);
+
+  // Adding Total TR
   let $trTotalRow = $("<tr>");
   let $trTotal = $("<td>");
   $trTotal.text("Total");
@@ -41,6 +57,8 @@ function renderOrderDetails(order) {
   $tdCurrency.text("$" + (order[0].total_cost * 1.0).toFixed(2));
   $trTotalRow.append([$tdTaxEmpty, $trTotal, $tdCurrency]);
   $("#menu_table").append($trTotalRow);
+
+  // Setting order status select
   $("#order_status_select").val(order[0].status_id);
 }
 
@@ -79,5 +97,7 @@ $(document).ready(function() {
       window.location.replace("/admin/orders");
     });
   });
+
+  // On document ready, load order details by making API call
   loadOrder();
 });

@@ -1,9 +1,15 @@
+/*
+  Function to load all the order by making GET api call to server
+*/
 function loadOrders() {
   $.ajax("/admin/orders_json", { method: "GET" }).then(function(ordersJson) {
     renderOrders(ordersJson);
   });
 }
 
+/*
+  Function to render all the orders according to the order status
+*/
 function renderOrders(orders) {
   orders.forEach(function() {
     orders.sort(function(a, b) {
@@ -27,6 +33,9 @@ function renderOrders(orders) {
   });
 }
 
+/*
+  Function to create order element as a li tag
+*/
 function createOrderElement(order) {
   let $liTag = $("<li>").addClass("li");
   let $aTag = $("<a>").attr("href", "/admin/order_edit/?order_id=" + order.id);
@@ -36,5 +45,6 @@ function createOrderElement(order) {
 }
 
 $(document).ready(function() {
+  // Load all the order once page is completed loading.
   loadOrders();
 });
