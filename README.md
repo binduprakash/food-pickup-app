@@ -18,16 +18,17 @@ Naan Stop! is a fictional restaurant with an Pickup Order Management system that
 
 3. Install dependencies: `npm i`
 4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Run migrations: `npm run knex migrate:latest`
+5. Register a trial account with Twilio and add all phone numbers you wish to use on this application. With Trial accounts only the numbers registered will receive texts, regardless if they are Restaurant Admin or Customer.
+6. Run migrations: `npm run knex migrate:latest`
 
 - Check the migrations folder to see what gets created in the DB
 
-6. Run the seed: `npm run knex seed:run`
+8. Run the seed: `npm run knex seed:run`
 
 - Check the seeds file to see what gets seeded in the DB
 
-7. Run the server: `npm run local`
-8. Visit `http://localhost:8080/`
+9. Run the server: `npm run local`
+10. Visit `http://localhost:8080/`
 
 ## Dependencies
 
