@@ -1,3 +1,6 @@
+/*
+  Seed 1 : Cleans up all the table data
+*/
 exports.seed = function(knex, Promise) {
   return knex("order_menu_items")
     .del()

@@ -1,3 +1,6 @@
+/*
+  Seed 3 : This file seeds order status data and sample orders for all the order status
+*/
 exports.seed = function(knex, Promise) {
   return knex("order_status")
     .del()

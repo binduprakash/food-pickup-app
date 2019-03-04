@@ -1,3 +1,6 @@
+/*
+  Seed 2 : Adds menu types and all the menu items are the app to load index page
+*/
 exports.seed = function(knex, Promise) {
   return knex('menu_items').del()
     .then(function () {
