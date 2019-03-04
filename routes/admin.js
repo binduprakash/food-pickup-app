@@ -1,11 +1,11 @@
 "use strict";
-
 const express = require("express");
 const adminRoutes = express.Router();
 const twilio = require("../public/scripts/twilio.js");
 
 module.exports = function(knex) {
-  // Admin Orders JSON response
+
+  // Admin Orders API
   adminRoutes.get("/orders_json", (req, res) => {
     knex
       .select("orders.id", "order_status.name", "orders.created_at", "orders.customer_first_name", "orders.customer_last_name")
@@ -16,7 +16,12 @@ module.exports = function(knex) {
       });
   });
 
+  // Admin Order Details API
   adminRoutes.get("/orders_details_json/:orderID", (req, res) => {
+    /*
+      Join Order table with Order Status, Order Menu Item and Menu Items tables
+      for the given order.
+    */
     knex
       .select(
         "orders.id",
@@ -52,19 +57,17 @@ module.exports = function(knex) {
     res.render("admin_order_edit");
   });
 
+  //Admin Order ID page POST to save status
   adminRoutes.post("/order_edit", (req, res) => {
     let new_status = req.body["order_status_select"];
     let order_id = req.body["order_id"];
     let pick_up_minutes = req.body["pick_up_select"];
     let temp = req.body["phone"];
     let phoneT = `+1${temp.substring(14)}`;
-    console.log("PHONET *******", phoneT);
-
     knex("orders")
       .where({ id: order_id })
       .update({ status_id: new_status })
       .then(results => {
-        let phoneNumber = phoneT;
         let stringMessage = "";
         if (new_status == 2) {
           stringMessage = `Thanks for ordering at Naan Stop. Your Order (#${order_id}) will be ready in ${pick_up_minutes} minutes. Payment expected upon pickup.`;
@@ -74,7 +77,6 @@ module.exports = function(knex) {
         twilio.twilioTextMessage(stringMessage, phoneT);
         res.json(results);
       });
-    //res.render("admin_order_edit");
   });
   return adminRoutes;
 };
