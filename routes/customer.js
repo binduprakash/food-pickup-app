@@ -37,7 +37,7 @@ module.exports = function(knex) {
   });
 
   customerRoutes.post("/revieworder", (req, res) => {
-    
+
     //passes on data for each menu item with qty> 1 for templateVars
     let menuItems;
     knex
@@ -78,7 +78,7 @@ module.exports = function(knex) {
     var qtys = req.body.qty;
     var totalprice = parseFloat(req.body.totalprice);
 
-    //pushing order into database 
+    //pushing order into database
     knex("orders")
       .insert({
         status_id: 1,
@@ -104,10 +104,10 @@ module.exports = function(knex) {
     let templateVars = { phone: req.body.phoneNumber, name: req.body.firstName };
 
     // Text Admin Phone #
-    let adminPhoneNumber = "+17788775276";
+    let adminPhoneNumber = "+16046006082";
     let stringMessage = "Naan Stop - you have a new order to verify";
     twilio.twilioTextMessage(stringMessage, adminPhoneNumber);
-    
+
     res.render("order_confirmation", templateVars);
   });
 
