@@ -12,7 +12,7 @@ body {
     font-family: cursive;
     text-align: center;
     font-weight: bold;
-    margin-top:20px;
+    margin-top: 20px;
   }
   h3 {
     color: palegoldenrod;
@@ -23,6 +23,7 @@ body {
   .maincontainer {
     height: 350px;
     display: flex;
+    justify-content: center;
     align-items: center;
 
     .orderForm {
